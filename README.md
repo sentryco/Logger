@@ -1,3 +1,5 @@
+[![codebeat badge](https://codebeat.co/badges/1b701174-9272-4fc9-9de4-3e12af2094d6)](https://codebeat.co/projects/github-com-sentryco-logger-main)
+
 # 🔍 Logger
 
 > Simple console logger
