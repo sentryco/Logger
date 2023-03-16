@@ -56,9 +56,9 @@ Test().myFunction() // Prints "This msg is called from function: myFunction in c
 - Print only works when debugging an app. When the app is built for running. Swift.print doesn't work anymore. Use file logging in release if needed
 
 ### Todo:
-- Add codebeat 👈
-- Add GH action for unit tests 👈
+- Add codebeat ✅
 - Add lint 👈
+- Add GH action for unit tests 👈
 - Figure out how to log fatal crash? is it possible? exceptions? 
 - Do stackoverflow search on logging best practice etc 
 - Add terminal color to formating text: https://github.com/sushichop/Puppy/blob/main/Sources/Puppy/LogColor.swift
