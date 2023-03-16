@@ -11,4 +11,3 @@ public enum LogTag: String, CaseIterable {
    case security = "🔑"
    case other = "📝"
 }
-
