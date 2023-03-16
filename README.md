@@ -4,7 +4,7 @@
 
 ### Features
 - 3 levels of severity (🔴 error, 🟠 warning, 🔵️ debug)
-- 6 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🗄 db, 🔑 security, 📝 other)
+- 6 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🔑 security, 📝 other)
 - Output to consol, file, or custom source like Google analytics or Firebase crashalytics
 
 ### Logging format:
@@ -43,9 +43,9 @@ Logger.debug("Entered backround") // Does not print
 ### Tracing
 ```swift
 class Test {
-	func myFunction() {
-		Trace.trace("This msg")
-	}
+   func myFunction() {
+      Trace.trace("This msg")
+   }
 }
 Test().myFunction() // Prints "This msg is called from function: myFunction in class: Test on line: 13"
 ```
@@ -54,11 +54,11 @@ Test().myFunction() // Prints "This msg is called from function: myFunction in c
 - Print only works when debugging an app. When the app is built for running. Swift.print doesn't work anymore. Use file logging in release if needed
 
 ### Todo:
-- Add codebeat
-- Add GH action for unit tests
-- Add lint
-- Figure out how to log fatal crash? is it possible? exceptions? 👈
-- Do stackoverflow search on logging best practice etc 👈
+- Add codebeat 👈
+- Add GH action for unit tests 👈
+- Add lint 👈
+- Figure out how to log fatal crash? is it possible? exceptions? 
+- Do stackoverflow search on logging best practice etc 
 - Add terminal color to formating text: https://github.com/sushichop/Puppy/blob/main/Sources/Puppy/LogColor.swift
 - Add os support:  https://www.avanderlee.com/debugging/oslog-unified-logging/
 - What we can do is add `LogType.custom` that pull closure from a variable where we can adhock Crashalytics `if level == .warn || level == .error {  Crashlytics.crashlytics().record(error: error) } ` see: https://blog.logrocket.com/logging-and-remote-error-reporting-in-mobile-apps/
