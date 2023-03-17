@@ -15,7 +15,7 @@ public class Emailer {
     */
    public static func sendMail(on viewController: MailInitiator, text: String, recipient: String) -> UIAlertAction {
       UIAlertAction(title: "Send Email", style: .default) {
-         (action: UIAlertAction) in
+         (_: UIAlertAction) in
          DispatchQueue.main.async {
             if MFMailComposeViewController.canSendMail() {
                let composeVC = MFMailComposeViewController()
@@ -36,4 +36,3 @@ public class Emailer {
    }
 }
 #endif
-

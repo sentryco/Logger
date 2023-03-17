@@ -17,4 +17,3 @@ extension Logger {
     */
    public static var type: LogType = .consol
 }
-

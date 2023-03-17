@@ -12,7 +12,7 @@ extension LogType {
    /**
     *  Idicates app was started again
     */
-   public static var isNewLogSession: Bool = false
+   public static var isNewLogSession = false
    /**
     * Write text to file
     * - Remark: By using temp folder, the file is removed automatically at some point

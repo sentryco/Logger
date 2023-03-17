@@ -15,7 +15,7 @@ extension LoggerTests {
    /**
     * Write to console with a few different modes
     */
-   static fileprivate func log2consol() {
+   fileprivate static func log2consol() {
       Swift.print("log2consol")
       // Print text format
       Logger.config = .plain // .full
@@ -35,7 +35,7 @@ extension LoggerTests {
     * We can call GA (google analytics) or firebase crashalytics here
     * - Remark: We could also filter on tag. To focus on data, network, security etc
     */
-   static fileprivate func log2CustomOutput() {
+   fileprivate static func log2CustomOutput() {
       Swift.print("log2CustomOutput")
       let onLog: LogType.OnLog = { msg, level, _ in
          if [LogLevel.error, .warning].contains(where: { $0 == level }) {
@@ -51,7 +51,7 @@ extension LoggerTests {
     * Write to file, assert content
     * - Fixme: ⚠️️ we could omit date and assert correct content of file
     */
-   static fileprivate func log2file() {
+   fileprivate static func log2file() {
       Swift.print("log2file")
       Logger.type = .file(LogType.tempFilePath)
       Logger.debug("Test")
@@ -62,7 +62,7 @@ extension LoggerTests {
    /**
     * do Trace
     */
-   static fileprivate func testTrace() {
+   fileprivate static func testTrace() {
       Swift.print("testTrace")
       func myFunction() {
          Swift.print(Trace.trace("This msg"))
@@ -70,4 +70,3 @@ extension LoggerTests {
       myFunction() // Prints "This msg is called from function: myFunction in class: Test on line: 13"
    }
 }
-

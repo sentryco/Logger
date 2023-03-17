@@ -52,4 +52,3 @@ extension Logger {
       return "\(text) ➞ \(msg)"
    }
 }
-

@@ -10,4 +10,3 @@ extension LogLevel {
       String(describing: self).capitalized // First letter is uppercased
    }
 }
-

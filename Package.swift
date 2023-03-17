@@ -8,7 +8,7 @@ let package = Package(
     products: [
         .library(
             name: "Logger",
-            targets: ["Logger"]),
+            targets: ["Logger"])
     ],
     dependencies: [
       .package(url: "https://github.com/eonist/FileSugar.git", branch: "master")
@@ -19,6 +19,6 @@ let package = Package(
             dependencies: ["FileSugar"]),
         .testTarget(
             name: "LoggerTests",
-            dependencies: ["Logger"]),
+            dependencies: ["Logger"])
     ]
 )
