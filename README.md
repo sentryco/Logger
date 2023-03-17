@@ -7,7 +7,7 @@
 ### Features
 - 3 levels of severity (🔴 error, 🟠 warning, 🔵️ debug)
 - 6 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🔑 security, 📝 other)
-- Output to consol, file, or custom source like Google analytics or Firebase crashalytics
+- Output to consol, file, or a custom end-point like Google analytics or Firebase crashalytics
 
 ### Logging format:
 ```swift
@@ -16,7 +16,7 @@ Logger.debug(text: "Network.connect - connection established successfully", type
 Logger.warning(text: "Network.connect \(error.localDescription)", type: .net)
 // Output: [️🟠 Warning] [23-12-24 22:00:45] ➞ 📡 Network.connect: Wifi not turned on
 Logger.error(text: "Network.process-data \(error.localDescription)", type: .net)
-// Output: [🔴 Debug] [23-12-24 22:00:45] ➞ 📡 Network.process-data: Decoding was unsuccessful. Nothing was saved
+// Output: [🔴 Error] [23-12-24 22:00:45] ➞ 📡 Network.process-data: Decoding was unsuccessful. Nothing was saved
 ```
 
 ### Customize:
@@ -57,7 +57,7 @@ Test().myFunction() // Prints "This msg is called from function: myFunction in c
 
 ### Todo:
 - Add codebeat ✅
-- Add lint 👈
+- Add lint ✅
 - Add GH action for unit tests 👈
 - Figure out how to log fatal crash? is it possible? exceptions? 
 - Do stackoverflow search on logging best practice etc 
