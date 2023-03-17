@@ -1,3 +1,7 @@
+![mit](https://img.shields.io/badge/License-MIT-brightgreen.svg)
+![platform](https://img.shields.io/badge/Platform-iOS/macOS-blue.svg)
+![Lang](https://img.shields.io/badge/Language-Swift%205-orange.svg)
+[![SPM compatible](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift)
 [![Tests](https://github.com/sentryco/Logger/actions/workflows/Tests.yml/badge.svg)](https://github.com/sentryco/Logger/actions/workflows/Tests.yml)
 [![codebeat badge](https://codebeat.co/badges/1b701174-9272-4fc9-9de4-3e12af2094d6)](https://codebeat.co/projects/github-com-sentryco-logger-main)
 
@@ -60,8 +64,8 @@ Test().myFunction() // Prints "This msg is called from function: myFunction in c
 - Add codebeat ✅
 - Add lint ✅
 - Add GH action for unit tests 👈
-- Figure out how to log fatal crash? is it possible? exceptions? 
-- Do stackoverflow search on logging best practice etc 
+- Figure out how to log fatal crash? is it possible? exceptions?
+- Do stackoverflow search on logging best practice etc
 - Add terminal color to formating text: https://github.com/sushichop/Puppy/blob/main/Sources/Puppy/LogColor.swift
 - Add os support:  https://www.avanderlee.com/debugging/oslog-unified-logging/
 - What we can do is add `LogType.custom` that pull closure from a variable where we can adhock Crashalytics `if level == .warn || level == .error {  Crashlytics.crashlytics().record(error: error) } ` see: https://blog.logrocket.com/logging-and-remote-error-reporting-in-mobile-apps/
