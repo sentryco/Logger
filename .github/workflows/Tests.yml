@@ -2,9 +2,14 @@ name: Tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
+<<<<<<< HEAD
     branches: [ master ]
+=======
+    branches: [ main ]
+
+>>>>>>> aabdd74acf80554688364bc21dce443096c6dc6e
 jobs:
   build:
     runs-on: macos-latest
