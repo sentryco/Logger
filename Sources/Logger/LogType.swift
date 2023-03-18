@@ -8,7 +8,7 @@ public enum LogType {
    /**
     * Print to console or not
     */
-   case consol
+   case console
    /**
     * Use FileStream lib to append to a diagnostics.log or log.txt
     * - Remark: FilePath: "\(FileManager.TempFolder.string)/log.txt"
@@ -32,7 +32,7 @@ extension LogType {
     */
    internal func log(msg: String, level: LogLevel, tag: LogTag) {
       switch self {
-      case .consol:  // Consol
+      case .console:  // Consol
          Swift.print(msg)
       case let .file(filePath): // File
          Self.writeToFile(string: msg, filePath: filePath)

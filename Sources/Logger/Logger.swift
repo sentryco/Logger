@@ -28,7 +28,7 @@ extension Logger {
     * ## Examples:
     * Logger.error("MainView - init")
     */
-   public static func error(_ msg: String, tag: LogTag =  .other) {
+   public static func error(_ msg: String, tag: LogTag = .other) {
       log(msg, level: .error, tag: tag)
    }
 }
@@ -72,5 +72,5 @@ extension Logger {
     * Consol, file or custom
     * - Remark: We support only one type at the time for now
     */
-   public static var type: LogType = .consol
+   public static var type: LogType = .console
 }
