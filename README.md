@@ -29,7 +29,7 @@ Logger.error(text: "Network.process-data \(error.localDescription)", type: .net)
 // Print text format
 Logger.config = .plain // .full
 // Output transport
-Logger.type = .consol // .file(filePath)
+Logger.type = .console // .file(filePath)
 // Levels and tags
 Logger.mode = .everything // .nothing, .essential
 ```
@@ -63,10 +63,10 @@ Test().myFunction() // Prints "This msg is called from function: myFunction in c
 ### Todo:
 - Add codebeat ✅
 - Add lint ✅
-- Add GH action for unit tests 👈
+- Add GH action for unit tests ✅
 - Figure out how to log fatal crash? is it possible? exceptions?
 - Do stackoverflow search on logging best practice etc
 - Add terminal color to formating text: https://github.com/sushichop/Puppy/blob/main/Sources/Puppy/LogColor.swift
 - Add os support:  https://www.avanderlee.com/debugging/oslog-unified-logging/
-- What we can do is add `LogType.custom` that pull closure from a variable where we can adhock Crashalytics `if level == .warn || level == .error {  Crashlytics.crashlytics().record(error: error) } ` see: https://blog.logrocket.com/logging-and-remote-error-reporting-in-mobile-apps/
-- We can also use the custom hock to utilize: Google analytics for event, timing and exception calls. 🚫 (seems like firebase is the prefered options these days) but GA can still be used: https://github.com/ksmandersen/GoogleReporter I think GA is the leaner option. Firebase could be too elaborate etc?
+- What we can do is add `LogType.custom` that pull closure from a variable where we can adhock Crashalytics `if level == .warn || level == .error {  Crashlytics.crashlytics().record(error: error) } ` see: https://blog.logrocket.com/logging-and-remote-error-reporting-in-mobile-apps/ ✅
+- We can also use the custom hock to utilize: Google analytics for event, timing and exception calls. ✅ (seems like firebase is the prefered options these days) but GA can still be used: https://github.com/ksmandersen/GoogleReporter I think GA is the leaner option. Firebase could be too elaborate etc?
