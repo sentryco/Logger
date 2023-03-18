@@ -64,6 +64,8 @@ Test().myFunction() // Prints "This msg is called from function: myFunction in c
 - Add codebeat ✅
 - Add lint ✅
 - Add GH action for unit tests ✅
+- Add trace to commands somehow. "FileManager.save - error saving"
+- Add tag emoji to output just before msg etc
 - Figure out how to log fatal crash? is it possible? exceptions?
 - Do stackoverflow search on logging best practice etc
 - Add terminal color to formating text: https://github.com/sushichop/Puppy/blob/main/Sources/Puppy/LogColor.swift
