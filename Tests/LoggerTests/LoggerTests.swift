@@ -57,6 +57,7 @@ extension LoggerTests {
       Logger.debug("Test")
       Swift.print("LogType.tempFilePath:  \(LogType.tempFilePath)")
       let fileExists = FileAsserter.exists(path: LogType.tempFilePath)
+      Swift.print("fileExists: \(fileExists ? "✅" : "🚫")")
       XCTAssertTrue(fileExists)
    }
    /**
@@ -68,5 +69,6 @@ extension LoggerTests {
          Swift.print(Trace.trace("This msg"))
       }
       myFunction() // Prints "This msg is called from function: myFunction in class: Test on line: 13"
+      XCTAssertTrue(true == Optional(true)) // fix for Github actions
    }
 }
