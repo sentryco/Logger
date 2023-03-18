@@ -69,8 +69,5 @@ extension LoggerTests {
          Swift.print(Trace.trace("This msg"))
       }
       myFunction() // Prints "This msg is called from function: myFunction in class: Test on line: 13"
-      let isTrue = true == Optional(true) // fix for Github actions
-      Swift.print("isTrue: \(isTrue ? "✅" : "🚫")")
-      XCTAssertTrue(isTrue)
    }
 }

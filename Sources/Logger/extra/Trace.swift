@@ -20,4 +20,11 @@ public class Trace {
 		let className = (file as NSString).lastPathComponent // file name isnt imp
 	   return "\(message) is called from function: \(function) in class: \(className) on line: \(line)"
 	}
+   /**
+    * Outputs: "FileManger.save" or "NetManager.connect" etc
+    */
+   public static func trace(file: String = #file, function: String = #function) -> String {
+      let className = (file as NSString).lastPathComponent // file name isnt imp
+      return "\(className).\(function)"
+   }
 }
