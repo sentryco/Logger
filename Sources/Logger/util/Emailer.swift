@@ -2,12 +2,12 @@
 import Foundation
 import UIKit
 /**
- * - Fixme: ⚠️️ add for macOS as well? or is it supported as is?
+ * - Fixme: ⚠️️ Add for macOS as well? or is it supported as is?
  */
 public class Emailer {
    public typealias MailInitiator = UIViewController & MFMailComposeViewControllerDelegate
    /**
-    * - Fixme: ⚠️️ add example
+    * - Fixme: ⚠️️ Add example
     * - Parameters:
     *   - viewController: the mail vc
     *   - text: text to mail

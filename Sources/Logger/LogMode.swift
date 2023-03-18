@@ -1,5 +1,12 @@
 import Foundation
 /**
+ * Noise level in the console
+ */
+public struct LogMode {
+   let tag: TagFilter
+   let level: LevelFilter
+}
+/**
  * Const
  */
 extension LogMode {
@@ -16,3 +23,8 @@ extension LogMode {
     */
    public static let essential: LogMode = .init(tag: LogTag.allCases, level: [.warning, .error])
 }
+/**
+ * Type
+ */
+typealias TagFilter = [LogTag] // [.db, .net, .file, .ui, .security, .other]
+typealias LevelFilter = [LogLevel] // [.error, .warning, .info, .critical]

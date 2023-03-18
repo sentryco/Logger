@@ -1,6 +1,57 @@
 import Foundation
 import FileSugar
 /**
+ * LogType
+ * - Fixme: ⚠️️ Add later `.os`, `.sys`, (syslog, and oslog)
+ */
+public enum LogType {
+   /**
+    * Print to console or not
+    */
+   case consol
+   /**
+    * Use FileStream lib to append to a diagnostics.log or log.txt
+    * - Remark: FilePath: "\(FileManager.TempFolder.string)/log.txt"
+    */
+   case file(_ filePath: String)
+   /**
+    * Pull closure from a variable where we can adhock functinality
+    */
+   case custom(_ onLog: OnLog)
+}
+/**
+ * Helper
+ */
+extension LogType {
+   /**
+    * Log to type
+    * - Parameters:
+    *   - msg: Message to print
+    *   - level: Severity level to filter on etc
+    *   - tag: Tag type to filter on etc
+    */
+   internal func log(msg: String, level: LogLevel, tag: LogTag) {
+      switch self {
+      case .consol:  // Consol
+         Swift.print(msg)
+      case let .file(filePath): // File
+         Self.writeToFile(string: msg, filePath: filePath)
+      case let .custom(onLog): // Custom
+         onLog(msg, level, tag) // Call clousure
+      }
+   }
+}
+
+/**
+ * Custom
+ */
+extension LogType {
+   /**
+    * Closure hock typealias for custom output
+    */
+   public typealias OnLog = (_ msg: String, _ level: LogLevel, _ tag: LogTag) -> Void
+}
+/**
  * File
  */
 extension LogType {
