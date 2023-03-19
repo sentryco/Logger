@@ -29,7 +29,7 @@ Logger.error(text: "Network.process-data \(error.localDescription)", type: .net)
 // Print text format
 Logger.config = .plain // .full
 // Output transport
-Logger.type = .console // .file(filePath)
+Logger.type = .console // .file(filePath), .custom({ level, tag, msg in })
 // Levels and tags
 Logger.mode = .everything // .nothing, .essential
 ```
