@@ -57,6 +57,12 @@ class Test {
 Test().myFunction() // Prints "This msg is called from function: myFunction in class: Test on line: 13"
 ```
 
+### Trace + Logger
+```swift
+Logger.warn("\(Trace.trace() - error occured", tag: .net) - error occured") // Called inside NetManager.connect
+// Prints: [️🟠 Warning] [23-12-24 22:00:45] ➞ 📡 NetManager.connect - error occured
+```
+
 ### Gotchas
 - Print only works when debugging an app. When the app is built for running. Swift.print doesn't work anymore. Use file logging in release if needed
 
