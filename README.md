@@ -34,7 +34,7 @@ Logger.type = .console // .file(filePath)
 Logger.mode = .everything // .nothing, .essential
 ```
 
-### Add custom log destination like GA or Firebase crashalytics
+### Add custom log endpoint like GA or Firebase crashalytics
 ```swift
 let onLog: LogType.OnLog = { msg, level, _ in
    if [LogLevel.error, .warning].contains(where: { $0 == level }) {
