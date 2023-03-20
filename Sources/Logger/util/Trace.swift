@@ -17,14 +17,44 @@ public class Trace {
     *   - line: The line number on which it appears.
     */
    public static func trace(_ message: String, file: String = #file, function: String = #function, line: Int = #line ) -> String {
-		let className = (file as NSString).lastPathComponent // file name isnt imp
+		let fileName = (file as NSString).lastPathComponent // file path isn't imp
+      let className = fileName.split(separator: ".").dropLast()
 	   return "\(message) is called from function: \(function) in class: \(className) on line: \(line)"
 	}
    /**
     * Outputs: "FileManger.save" or "NetManager.connect" etc
     */
    public static func trace(file: String = #file, function: String = #function) -> String {
-      let className = (file as NSString).lastPathComponent // file name isnt imp
-      return "\(className).\(function)"
+      let fileName = (file as NSString).lastPathComponent // file path isn't imp
+      var className: String = "\(fileName.split(separator: ".").dropLast())"
+      className.trim(left: "[\"", right: "\"]")
+      let functionName = function.removeSuffix(suffix: "()")
+      return "\(className).\(functionName)"
+   }
+}
+/**
+ * String ext
+ */
+extension String {
+   /**
+    * trim left and right
+    */
+   mutating fileprivate func trim(left: String, right: String) {
+      self = removePrefix(prefix: left)
+      self = removeSuffix(suffix: right)
+   }
+   /**
+    * Removes the first occurence of the the prefix
+    */
+   fileprivate func removePrefix(prefix: String) -> String {
+      guard self.hasPrefix(prefix) else { return self }
+      return "\(self.dropFirst(prefix.count))"
+   }
+   /**
+    * Removes suffix from string
+    */
+   fileprivate func removeSuffix(suffix: String) -> String {
+      guard self.hasSuffix(suffix) else { return self }
+      return "\(self.dropLast(suffix.count))"
    }
 }
