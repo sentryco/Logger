@@ -29,7 +29,7 @@ public class Trace {
       var className: String = "\(fileName.split(separator: ".").dropLast())"
       className.trim(left: "[\"", right: "\"]")
 //      let functionName = function.removeSuffix(suffix: "()")
-      return "\(className).\(functionName)"
+      return "\(className).\(function)"
    }
 }
 /**
