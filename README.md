@@ -9,15 +9,15 @@
 
 > Simple console logger
 
-### Reasoning:
-- Efficiently debugging complex apps, requires filtering, or else the console quickly becomes cluttered 
-- It is much easier to fix a network bug when we can turn of ui and db logging
-- Being able to debug errors to an endpoint like google analytics or firebase crashalytics
-
 ### Features
 - 3 levels of severity (🔴 error, 🟠 warning, 🔵️ debug)
 - 9 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🔑 security, 🛍 finance, 💻 system, ⚙️ util, 📝 other)
 - Output to **consol**, **file**, or a **custom** end-point like Google analytics or Firebase crashalytics etc
+
+### Reasoning:
+- Efficiently debugging complex apps, requires filtering, or else the console quickly becomes cluttered 
+- It is much easier to fix a network bug when we can turn of ui and db logging
+- Being able to debug errors to an endpoint like google analytics or firebase crashalytics
 
 ### Logging format:
 ```swift
