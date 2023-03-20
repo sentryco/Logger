@@ -17,7 +17,7 @@
 ### Reasoning:
 - Efficiently debugging complex apps, requires filtering, or else the console quickly becomes cluttered 
 - It is much easier to fix a network bug when we can turn of ui and db logging
-- Being able to debug errors to an endpoint like google analytics or firebase crashalytics
+- It is helpful to send errors to an endpoint like google analytics or firebase crashalytics
 
 ### Logging format:
 ```swift
