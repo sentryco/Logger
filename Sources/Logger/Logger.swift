@@ -20,6 +20,14 @@ extension Logger {
     * - Remark: We support only one type at the time for now
     */
    public static var type: LogType = .console
+   /**
+    * Set logger construct
+    */
+   public static func setup(config: LogConfig, mode: LogMode, type: LogType) {
+      Self.config = config
+      Self.mode = mode
+      Self.type = type
+   }
 }
 /**
  * Commands
