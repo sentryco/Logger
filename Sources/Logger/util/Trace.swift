@@ -28,7 +28,7 @@ public class Trace {
       let fileName = (file as NSString).lastPathComponent // file path isn't imp
       var className: String = "\(fileName.split(separator: ".").dropLast())"
       className.trim(left: "[\"", right: "\"]")
-      let functionName = function.removeSuffix(suffix: "()")
+//      let functionName = function.removeSuffix(suffix: "()")
       return "\(className).\(functionName)"
    }
 }
