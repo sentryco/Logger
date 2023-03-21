@@ -10,8 +10,12 @@ public enum LogTag: String, CaseIterable {
    case file = "💾"
    case ui = "🖥"
    case security = "🔑"
-   case finance = "🛍" // - Fixme: ⚠️️ rename to payment?
-   case system = "💻"
-   case util = "⚙️"
+   case payment = "🛍"
+   case system = "⚙️"
+   case util = "🧰"
    case other = "📝"
+}
+extension LogTag {
+   @available(*, deprecated, renamed: "payment")
+   public static let finance: LogTag = .payment
 }

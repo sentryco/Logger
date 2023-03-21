@@ -11,7 +11,7 @@
 
 ### Features
 - 3 levels of severity (🔴 error, 🟠 warning, 🔵️ debug)
-- 9 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🔑 security, 🛍 finance, 💻 system, ⚙️ util, 📝 other)
+- 9 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🔑 security, 🛍 payment, ⚙️ system, 🧰 util, 📝 other)
 - Output to **consol**, **file**, or a **custom** end-point like Google analytics or Firebase crashalytics etc
 
 ### Reasoning:
