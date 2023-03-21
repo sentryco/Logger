@@ -10,7 +10,7 @@ public enum LogTag: String, CaseIterable {
    case file = "💾"
    case ui = "🖥"
    case security = "🔑"
-   case finance = "🛍"
+   case finance = "🛍" // - Fixme: ⚠️️ rename to payment?
    case system = "💻"
    case util = "⚙️"
    case other = "📝"
