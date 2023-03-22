@@ -15,7 +15,7 @@
 - Output to **consol**, **file**, or a **custom** end-point like Google analytics or Firebase crashalytics etc
 
 ### Reasoning:
-- Efficiently debugging complex apps, requires filtering, or else the console quickly becomes cluttered 
+- Efficiently debugging complex apps, requires filtering, or else the console quickly becomes cluttered
 - It is much easier to fix a network bug when we can turn of ui and db logging
 - It is helpful to send errors to an endpoint like google analytics or firebase crashalytics
 
@@ -29,7 +29,7 @@ Logger.error(text: "Network.process-data \(error.localDescription)", type: .net)
 // Output: [🔴 Error] [23-12-24 22:00:45] ➞ 📡 Network.process-data: Decoding was unsuccessful. Nothing was saved
 ```
 
-### Customize:
+### Configure:
 ```swift
 // Print text format
 Logger.config = .plain // .full

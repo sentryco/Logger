@@ -20,7 +20,7 @@ extension LoggerTests {
       // Print text format
       Logger.config = .plain // .full
       // Output transport
-      Logger.type = .consol // .file(filePath)
+      Logger.type = .console // .file(filePath)
       // Levels and tags
       Logger.mode = .everything // .nothing, .essential
       Logger.debug("MainView.test()", tag: .ui)
@@ -53,10 +53,11 @@ extension LoggerTests {
     */
    fileprivate static func log2file() {
       Swift.print("log2file")
-      Logger.type = .file(LogType.tempFilePath)
+      let tempFilePath = "\(NSTemporaryDirectory())/log.txt"
+      Logger.type = .file(tempFilePath)
       Logger.debug("Test")
-      Swift.print("LogType.tempFilePath:  \(LogType.tempFilePath)")
-      let fileExists = FileAsserter.exists(path: LogType.tempFilePath)
+      Swift.print("LogType.tempFilePath:  \(tempFilePath)")
+      let fileExists = FileAsserter.exists(path: tempFilePath)
       Swift.print("fileExists\(fileExists ? "✅" : "🚫")")
       XCTAssertTrue(fileExists)
    }

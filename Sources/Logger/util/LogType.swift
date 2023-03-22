@@ -11,7 +11,8 @@ public enum LogType {
    case console
    /**
     * Use FileStream lib to append to a diagnostics.log or log.txt
-    * - Remark: FilePath: URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("log.txt").path
+    * - Remark: Temp: "\(NSTemporaryDirectory())/log.txt"
+    * - Remark: Home: "\(NSHomeDirectory())/log.txt"
     */
    case file(_ filePath: String)
    /**
@@ -41,7 +42,6 @@ extension LogType {
       }
    }
 }
-
 /**
  * Custom
  */
@@ -57,32 +57,27 @@ extension LogType {
  */
 extension LogType {
    /**
-    * Destination log file
-    * - Remark: Optional name could be  // log.text
-    */
-   public static var tempFilePath: String = FileManager.default.temporaryDirectory.appendingPathComponent("log.text").path // let filePath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("log.txt")
-   /**
     *  Idicates app was started again
     */
    public static var isNewLogSession = false
    /**
     * Write text to file
     * - Remark: By using temp folder, the file is removed automatically at some point
+    * - Remark: Logs might be lost in temp folder if automation needs to kill the app.
     * - Fixme: ⚠️️ Maybe auto-create new file if size excedes 3MB etc, temp folder do remove content if it gets to big etc I think, so add this later etc
     * - Parameters:
     *   - string: Make sure to add \n to end
     *   - filePath: Destination file path, usually temp folder path etc
     */
    public static func writeToFile(string: String, filePath: String) {
-      // Swift.print("writeToFile: \(string)")
       var content: String = ""
       if !FileAsserter.exists(path: filePath) { // Assert if filePath doesn't exist
-         FileModifier.write(filePath, content: content) // Create new file if non exists
+         FileModifier.write(filePath, content: "New file created" + "\n") // Create new file if non exists
       }
-      if isNewLogSession == false {
+      if isNewLogSession == false { // Indicates new app session
          content += "New session started" + "\n"
          isNewLogSession = true // only triger once per app session
-      } // Indicates new app session
+      }
       content += string + "\n" // Add string
       FileModifier.append(filePath, text: content) // Append content to end of file
    }
