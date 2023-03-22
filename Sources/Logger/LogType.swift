@@ -11,7 +11,7 @@ public enum LogType {
    case console
    /**
     * Use FileStream lib to append to a diagnostics.log or log.txt
-    * - Remark: FilePath: "\(FileManager.TempFolder.string)/log.txt"
+    * - Remark: FilePath: URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("log.txt").path
     */
    case file(_ filePath: String)
    /**
@@ -60,7 +60,7 @@ extension LogType {
     * Destination log file
     * - Remark: Optional name could be  // log.text
     */
-   public static var tempFilePath: String = FileManager.default.temporaryDirectory.appendingPathComponent("diagnostics.log").path
+   public static var tempFilePath: String = FileManager.default.temporaryDirectory.appendingPathComponent("log.text").path // let filePath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("log.txt")
    /**
     *  Idicates app was started again
     */
@@ -74,14 +74,16 @@ extension LogType {
     *   - filePath: Destination file path, usually temp folder path etc
     */
    public static func writeToFile(string: String, filePath: String) {
+      // Swift.print("writeToFile: \(string)")
       var content: String = ""
       if !FileAsserter.exists(path: filePath) { // Assert if filePath doesn't exist
          FileModifier.write(filePath, content: content) // Create new file if non exists
       }
-      FileModifier.append(filePath, text: content)
-      if isNewLogSession == false { content += "New session started" + "\n" } // Indicates new app session
-      content += string // Add string
+      if isNewLogSession == false {
+         content += "New session started" + "\n"
+         isNewLogSession = true // only triger once per app session
+      } // Indicates new app session
+      content += string + "\n" // Add string
       FileModifier.append(filePath, text: content) // Append content to end of file
-      isNewLogSession = true
    }
 }

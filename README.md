@@ -37,6 +37,8 @@ Logger.config = .plain // .full
 Logger.type = .console // .file(filePath), .custom({ level, tag, msg in })
 // Levels and tags
 Logger.mode = .everything // .nothing, .essential
+// Or use this convenient one-liner:
+Logger.setup(config: .plain, mode: .everything, type: .console)
 ```
 
 ### Add custom log end-point like GA or Firebase crashalytics
