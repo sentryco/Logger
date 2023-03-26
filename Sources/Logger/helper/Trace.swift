@@ -39,7 +39,7 @@ extension String {
    /**
     * trim left and right
     */
-   mutating fileprivate func trim(left: String, right: String) {
+   fileprivate mutating func trim(left: String, right: String) {
       self = removePrefix(prefix: left)
       self = removeSuffix(suffix: right)
    }
