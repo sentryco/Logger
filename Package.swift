@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "Logger",
-    platforms: [.iOS(.v13), .macOS(.v11)],
+    platforms: [.iOS(.v13), .macOS(.v11)],// update to ios15? 
     products: [
         .library(
             name: "Logger",
