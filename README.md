@@ -9,9 +9,6 @@
 
 > Simple console logger
 
-> **Warning**
-> Since iOS14+ Target apples own Logger class, write: `os.Logger` 
-
 ### Features
 - 3 levels of severity (🔴 error, 🟠 warning, 🔵️ debug)
 - 9 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🔑 security, 🛍 payment, ⚙️ system, 🧰 util, 📝 other)
@@ -31,6 +28,9 @@ Logger.warning(text: "Network.connect \(error.localDescription)", type: .net)
 Logger.error(text: "Network.process-data \(error.localDescription)", type: .net)
 // Output: [🔴 Error] [23-12-24 22:00:45] ➞ 📡 Network.process-data: Decoding was unsuccessful. Nothing was saved
 ```
+
+> **Warning**
+> Since iOS14+ Target apples own Logger class, write: `os.Logger` 
 
 ### Configure:
 ```swift
