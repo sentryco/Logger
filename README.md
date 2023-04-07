@@ -29,9 +29,6 @@ Logger.error(text: "Network.process-data \(error.localDescription)", type: .net)
 // Output: [🔴 Error] [23-12-24 22:00:45] ➞ 📡 Network.process-data: Decoding was unsuccessful. Nothing was saved
 ```
 
-> **Warning**
-> Since iOS14+ Target apples own Logger class, write: `os.Logger` 
-
 ### Configure:
 ```swift
 // Print text format
@@ -43,6 +40,10 @@ Logger.mode = .everything // .nothing, .essential
 // Or use this convenient one-liner:
 Logger.setup(config: .plain, mode: .everything, type: .console)
 ```
+
+> **Warning**
+> Since iOS14+ Target apples own Logger class, write: `os.Logger` 
+
 
 ### Add custom log end-point like GA or Firebase crashalytics
 ```swift
@@ -75,17 +76,13 @@ Logger.warn("\(Trace.trace() - error occured", tag: .net) - error occured") // C
 
 ### Gotchas
 - Print only works when debugging an app. When the app is built for running. Swift.print doesn't work anymore. Use file logging in release if needed
+- Unless 
 
 ### Todo:
-- Add codebeat ✅
-- Add lint ✅
-- Add GH action for unit tests ✅
-- Maybe include trace in log call so it can be toggled on and off 🤔
-- Add trace to commands somehow. "FileManager.save - error saving"
-- Add tag emoji to output just before msg etc
-- Figure out how to log fatal crash? is it possible? exceptions?
-- Do stackoverflow search on logging best practice etc
+- Maybe include the `Trace.trace()` call in log call so it can be toggled on and off 🤔
+- Add the tag-type emoji to output just before msg etc
+- Figure out how to log fatal crash? is it possible? exceptions? Research needed 
+- Do more stackoverflow search on logging best practice etc 
 - Add terminal color to formating text: https://github.com/sushichop/Puppy/blob/main/Sources/Puppy/LogColor.swift
 - Add os support:  https://www.avanderlee.com/debugging/oslog-unified-logging/
-- What we can do is add `LogType.custom` that pull closure from a variable where we can adhock Crashalytics `if level == .warn || level == .error {  Crashlytics.crashlytics().record(error: error) } ` see: https://blog.logrocket.com/logging-and-remote-error-reporting-in-mobile-apps/ ✅
-- We can also use the custom hock to utilize: Google analytics for event, timing and exception calls. ✅ (seems like firebase is the prefered options these days) but GA can still be used: https://github.com/ksmandersen/GoogleReporter I think GA is the leaner option. Firebase could be too elaborate etc?
+- Try Firebase crashalytics in a demo project 
