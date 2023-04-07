@@ -9,6 +9,9 @@
 
 > Simple console logger
 
+> **Warning**
+> Since iOS14+ Target apples own Logger class, write: `os.Logger` 
+
 ### Features
 - 3 levels of severity (🔴 error, 🟠 warning, 🔵️ debug)
 - 9 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🔑 security, 🛍 payment, ⚙️ system, 🧰 util, 📝 other)
