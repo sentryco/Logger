@@ -3,6 +3,7 @@ import Foundation
  * Logger
  */
 public final class Logger {}
+public typealias Log = Logger // Since apple has os.Logger from ios14 etc
 /**
  * Const
  */
