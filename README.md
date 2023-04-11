@@ -41,7 +41,7 @@ Logger.mode = .everything // .nothing, .essential
 Logger.setup(config: .plain, mode: .everything, type: .console)
 ```
 
-> **Warning**
+> **Warning**  
 > Since iOS14+ Target apples own Logger class, write: `os.Logger` 
 
 
