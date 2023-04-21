@@ -16,7 +16,6 @@ public struct LogConfig {
       self.dateFormat = dateFormat
    }
 }
-
 /**
  * Getter
  */
@@ -42,10 +41,15 @@ extension LogConfig {
 extension LogConfig {
    /**
     * less noisy
+    * - Fixme: ⚠️️ rename to .minimal
     */
-   public static let plain: LogConfig = .init(showDate: false, useVerboseTypeText: false, dateFormat: defaultDateFormat)
+   public static let plain: LogConfig = {
+      .init(showDate: false, useVerboseTypeText: false, dateFormat: defaultDateFormat)
+   }()
    /**
     * Full spectrum diagnostics
     */
-   public static let full: LogConfig = .init(showDate: true, useVerboseTypeText: true, dateFormat: defaultDateFormat)
+   public static let full: LogConfig = {
+      .init(showDate: true, useVerboseTypeText: true, dateFormat: defaultDateFormat)
+   }()
 }
