@@ -12,6 +12,7 @@ public struct LogMode {
 }
 /**
  * Const
+ * - Fixme: ⚠️️ is this needed? Seems like we use custom setup most of the time anyways, remove?
  */
 extension LogMode {
    /**

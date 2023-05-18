@@ -22,10 +22,12 @@ public struct LogConfig {
 extension LogConfig {
    /**
     * Default date format
+    * - Fixme: ⚠️️ add doc, example?
     */
    public static let defaultDateFormat: String = "yyyy-MM-dd' 'HH:mm:ss"
    /**
     * DateFormatter
+    * - Fixme: ⚠️️ add doc, example?
     */
    var dateFormatter: DateFormatter {
       let format = DateFormatter()

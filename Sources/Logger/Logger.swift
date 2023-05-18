@@ -23,6 +23,10 @@ extension Logger {
    public static var type: LogType = .console
    /**
     * Set logger construct
+    * - Parameters:
+    *   - config: - Fixme: ⚠️️ add doc
+    *   - mode: - Fixme: ⚠️️ add doc
+    *   - type: - Fixme: ⚠️️ add doc
     */
    public static func setup(config: LogConfig, mode: LogMode, type: LogType) {
       Self.config = config
@@ -37,9 +41,15 @@ extension Logger {
 extension Logger {
    /**
     * Regular app event which can be used to decipher other more critical events
-    * ## Example:
-    * Logger.error(text: "BPManager.connect error: \(error.localDescription)", type: .net)
-    * Output: [🟠 Debug] [23-12-24 22:00:45] ➞ 📡 Network.connect error: Wifi not turned on
+    * - Parameters:
+    *   - msg: - Fixme: ⚠️️ add doc
+    *   - tag: - Fixme: ⚠️️ add doc
+    */
+   public static func info(_ msg: String, tag: LogTag = .other) {
+      log(msg, level: .info, tag: tag)
+   }
+   /**
+    * Use this to debug code that has bugs etc
     * - Parameters:
     *   - msg: - Fixme: ⚠️️ add doc
     *   - tag: - Fixme: ⚠️️ add doc
@@ -49,6 +59,9 @@ extension Logger {
    }
    /**
     * Semi critical, but can be ignoered. Doesn't break anything. is recoverable
+    * ## Example:
+    * Logger.warn(text: "BPManager.connect error: \(error.localDescription)", type: .net)
+    * Output: [🟠 Debug] [23-12-24 22:00:45] ➞ 📡 Network.connect error: Wifi not turned on
     * - Parameters:
     *   - msg: - Fixme: ⚠️️ add doc
     *   - tag: - Fixme: ⚠️️ add doc
