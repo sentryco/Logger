@@ -41,6 +41,7 @@ extension Logger {
 extension Logger {
    /**
     * Regular app event which can be used to decipher other more critical events
+    * - Remark: This type is great for leaving trace code in libs and apps, and only activating them if we need to have more context while debugging
     * - Parameters:
     *   - msg: - Fixme: ⚠️️ add doc
     *   - tag: - Fixme: ⚠️️ add doc

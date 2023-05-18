@@ -45,6 +45,7 @@ extension LoggerTests {
       Logger.type = .custom(onLog) // Add the custom output closure to the logger
       Logger.warn("Uh-Oh something went wrong") // Prints
       Logger.error("Unsupported format, bail") // Prints
+      Logger.info("App flow: move to front") // Prints
       Logger.debug("Entered backround") // Does not print
    }
    /**
