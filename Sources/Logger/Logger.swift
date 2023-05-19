@@ -51,6 +51,7 @@ extension Logger {
    }
    /**
     * Use this to debug code that has bugs etc
+    * - Remark: Use this for fixing bugs, should be temporary until it's solved etc
     * - Parameters:
     *   - msg: - Fixme: ⚠️️ add doc
     *   - tag: - Fixme: ⚠️️ add doc
