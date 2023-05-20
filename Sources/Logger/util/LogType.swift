@@ -7,6 +7,7 @@ import FileSugar
 public enum LogType {
    /**
     * Print to console or not
+    * - Fixme: ⚠️️ rename to print? and then use consol for .os etc ? or remove?
     */
    case console
    /**
@@ -17,6 +18,7 @@ public enum LogType {
    case file(_ filePath: String)
    /**
     * Pull closure from a variable where we can adhock functinality
+    * - Fixme: ⚠️️ add examle
     */
    case custom(_ onLog: OnLog)
 }

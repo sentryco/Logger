@@ -23,6 +23,7 @@ extension Logger {
    public static var type: LogType = .console
    /**
     * Set logger construct
+    * - Fixme: ⚠️️ add example
     * - Parameters:
     *   - config: - Fixme: ⚠️️ add doc
     *   - mode: - Fixme: ⚠️️ add doc
