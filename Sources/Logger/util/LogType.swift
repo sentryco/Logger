@@ -7,7 +7,7 @@ import FileSugar
 public enum LogType {
    /**
     * Print to console or not
-    * - Fixme: ⚠️️ rename to print? and then use consol for .os etc ? or remove?
+    * - Fixme: ⚠️️ Rename to print? and then use consol for .os etc ? or remove?
     */
    case console
    /**
@@ -18,7 +18,7 @@ public enum LogType {
    case file(_ filePath: String)
    /**
     * Pull closure from a variable where we can adhock functinality
-    * - Fixme: ⚠️️ add examle
+    * - Fixme: ⚠️️ Add examle
     */
    case custom(_ onLog: OnLog)
 }
@@ -35,7 +35,7 @@ extension LogType {
     */
    internal func log(msg: String, level: LogLevel, tag: LogTag) {
       switch self {
-      case .console:  // Consol
+      case .console: // Console
          Swift.print(msg)
       case let .file(filePath): // File
          Self.writeToFile(string: msg, filePath: filePath)

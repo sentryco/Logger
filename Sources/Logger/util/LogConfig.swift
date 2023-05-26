@@ -22,7 +22,7 @@ public struct LogConfig {
 extension LogConfig {
    /**
     * Default date format
-    * - Fixme: ⚠️️ add doc, example?
+    * - Fixme: ⚠️️ Add doc, example?
     */
    public static let defaultDateFormat: String = "yyyy-MM-dd' 'HH:mm:ss"
    /**
@@ -44,12 +44,14 @@ extension LogConfig {
    /**
     * less noisy
     * - Fixme: ⚠️️ rename to .minimal
+    * - Fixme: ⚠️️ add output example
     */
    public static let plain: LogConfig = {
       .init(showDate: false, useVerboseTypeText: false, dateFormat: defaultDateFormat)
    }()
    /**
     * Full spectrum diagnostics
+    * - Fixme: ⚠️️ add output example?
     */
    public static let full: LogConfig = {
       .init(showDate: true, useVerboseTypeText: true, dateFormat: defaultDateFormat)

@@ -10,7 +10,7 @@
 > Simple console logger
 
 ### Features
-- 3 levels of severity (🔴 error, 🟠 warning, 🔵️ debug)
+- 4 levels of severity (🔴 error, 🟠 warning, 🔵️ debug, 🟣 info)
 - 9 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🔑 security, 🛍 payment, ⚙️ system, 🧰 util, 📝 other)
 - Output to **consol**, **file**, or a **custom** end-point like Google analytics or Firebase crashalytics etc (Use Telemetry for GA)
 
@@ -86,3 +86,4 @@ Logger.warn("\(Trace.trace() - error occured", tag: .net) - error occured") // C
 - Add terminal color to formating text: https://github.com/sushichop/Puppy/blob/main/Sources/Puppy/LogColor.swift
 - Add os support:  https://www.avanderlee.com/debugging/oslog-unified-logging/
 - Try Firebase crashalytics in a demo project
+- Add support for oslog in the framework. We currently support it in the ad-hock callback. Add this to unit test as well as instructions on Console.app usage and limitations etc

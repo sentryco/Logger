@@ -14,7 +14,8 @@ public struct LogMode {
 }
 /**
  * Const
- * - Fixme: ⚠️️ is this needed? Seems like we use custom setup most of the time anyways, remove?
+ * - Fixme: ⚠️️ is this needed? Seems like we use custom setup most of the time anyways, remove? I guess it can be nice to get started? see example use cases etc?
+ * - Fixme: ⚠️️ add examples to each type?
  */
 extension LogMode {
    /**

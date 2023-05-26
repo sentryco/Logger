@@ -1,8 +1,8 @@
 import Foundation
 /**
  * Different log cases available for print
- * - Remark: Alt emojies: ☠️ 📣 ⚠️ 🚧 ☣️ 🚨 🟢 🟤 🟡
- * - Remark: Alt titles: alert, info, success, event, debug, notice, warning, verbose, emergency, severe
+ * - Remark: Alternative emojies: ☠️ 📣 ⚠️ 🚧 ☣️ 🚨 🟢 🟤 🟡
+ * - Remark: Alternative titles: alert, info, success, event, debug, notice, warning, verbose, emergency, severe
  * - Fixme: ⚠️️ Emojies could be customizable: `static var warningEmojiSymbol = "" static var debugEmojiSymbol = "" static var errorEmojiSymbol = ""` etc
  */
 public enum LogLevel: String, CaseIterable { // Severity: fatal, critical, normal etc

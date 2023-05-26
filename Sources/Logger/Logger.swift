@@ -23,11 +23,11 @@ extension Logger {
    public static var type: LogType = .console
    /**
     * Set logger construct
-    * - Fixme: ⚠️️ add example
+    * - Fixme: ⚠️️ Add example
     * - Parameters:
-    *   - config: - Fixme: ⚠️️ add doc
-    *   - mode: - Fixme: ⚠️️ add doc
-    *   - type: - Fixme: ⚠️️ add doc
+    *   - config: - Fixme: ⚠️️ Add doc
+    *   - mode: - Fixme: ⚠️️ Add doc
+    *   - type: - Fixme: ⚠️️ Add doc
     */
    public static func setup(config: LogConfig, mode: LogMode, type: LogType) {
       Self.config = config
@@ -37,15 +37,15 @@ extension Logger {
 }
 /**
  * Commands
- * - Fixme: ⚠️️ Add later: add class and line to end of msg
+ * - Fixme: ⚠️️ Add later: add class and line to end of msg aka the code that is in Trace.trace
  */
 extension Logger {
    /**
     * Regular app event which can be used to decipher other more critical events
     * - Remark: This type is great for leaving trace code in libs and apps, and only activating them if we need to have more context while debugging
     * - Parameters:
-    *   - msg: - Fixme: ⚠️️ add doc
-    *   - tag: - Fixme: ⚠️️ add doc
+    *   - msg: Trace + custom message
+    *   - tag: type of loggin payment, network, database etc
     */
    public static func info(_ msg: String, tag: LogTag = .other) {
       log(msg, level: .info, tag: tag)
@@ -54,8 +54,8 @@ extension Logger {
     * Use this to debug code that has bugs etc
     * - Remark: Use this for fixing bugs, should be temporary until it's solved etc
     * - Parameters:
-    *   - msg: - Fixme: ⚠️️ add doc
-    *   - tag: - Fixme: ⚠️️ add doc
+    *   - msg: Trace + custom message
+    *   - tag: type of loggin payment, network, database etc
     */
    public static func debug(_ msg: String, tag: LogTag = .other) {
       log(msg, level: .debug, tag: tag)
@@ -66,8 +66,8 @@ extension Logger {
     * Logger.warn(text: "BPManager.connect error: \(error.localDescription)", type: .net)
     * Output: [🟠 Debug] [23-12-24 22:00:45] ➞ 📡 Network.connect error: Wifi not turned on
     * - Parameters:
-    *   - msg: - Fixme: ⚠️️ add doc
-    *   - tag: - Fixme: ⚠️️ add doc
+    *   - msg: Trace + custom message
+    *   - tag: type of loggin payment, network, database etc
     */
    public static func warn(_ msg: String, tag: LogTag =  .other) {
       log(msg, level: .warning, tag: tag)
@@ -77,8 +77,8 @@ extension Logger {
     * ## Examples:
     * Logger.error("MainView - init")
     * - Parameters:
-    *   - msg: - Fixme: ⚠️️ add doc
-    *   - tag: - Fixme: ⚠️️ add doc
+    *   - msg: Trace + custom message
+    *   - tag: type of loggin payment, network, database etc
     */
    public static func error(_ msg: String, tag: LogTag = .other) {
       log(msg, level: .error, tag: tag)
