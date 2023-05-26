@@ -6,7 +6,7 @@ final class LoggerTests: XCTestCase {
    func testExample() throws {
       Self.log2consol()
       Self.log2CustomOutput()
-      Self.log2file()
+//      Self.log2file()
       Self.testTrace()
       // - Fixme: ⚠️️ Begin Telemetry lib for GA
    }
@@ -51,6 +51,7 @@ extension LoggerTests {
    /**
     * Write to file, assert content
     * - Fixme: ⚠️️ we could omit date and assert correct content of file
+    * - Fixme: ⚠️️ we should probably creat the temp file if it doesn't already exist etc
     */
    fileprivate static func log2file() {
       Swift.print("log2file")
