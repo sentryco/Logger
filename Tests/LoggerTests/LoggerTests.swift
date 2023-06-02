@@ -6,7 +6,7 @@ final class LoggerTests: XCTestCase {
    func testExample() throws {
       Self.log2consol()
       Self.log2CustomOutput()
-//      Self.log2file()
+      // Self.log2file()
       Self.testTrace()
       // - Fixme: ⚠️️ Begin Telemetry lib for GA
    }
