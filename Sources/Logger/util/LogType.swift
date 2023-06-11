@@ -51,6 +51,7 @@ extension LogType {
    /**
     * Closure hock typealias for custom output
     * - Remark: It could be a good idea to filter calls if device is in the background / standby via: `UIApplication.shared.applicationState == .active`
+    * - Fixme: ⚠️️ doc each param
     */
    public typealias OnLog = (_ msg: String, _ level: LogLevel, _ tag: LogTag) -> Void
 }
