@@ -13,6 +13,6 @@ public enum LogTag: String, CaseIterable {
    case payment = "🛍"
    case system = "⚙️"
    case util = "🧰"
-   case other = "📝"
+   case other = "📝" // - Fixme: ⚠️️ find a more generic icon?
 }
 
