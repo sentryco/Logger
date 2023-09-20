@@ -14,10 +14,11 @@
 - 9 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🔑 security, 🛍 payment, ⚙️ system, 🧰 util, 📝 other)
 - Output to **consol**, **file**, or a **custom** end-point like Google analytics or Firebase crashalytics etc (Use Telemetry for GA)
 
-### Reasoning:
-- Efficiently debugging complex apps, requires filtering, or else the console quickly becomes cluttered
-- It is much easier to fix a network bug when we can turn of ui and db logging
-- It is helpful to send errors to an endpoint like google analytics or firebase crashalytics
+### Why Logger?
+- Debugging complex apps efficiently requires filtering to prevent console clutter.
+- Fixing network bugs becomes easier when UI and DB logging can be turned off.
+- Sending errors to endpoints like Google Analytics or Firebase Crashlytics is beneficial.
+
 
 ### Logging format:
 ```swift
@@ -75,16 +76,16 @@ Logger.warn("\(Trace.trace() - error occured", tag: .net) - error occured") // C
 ```
 
 ### Gotchas
-- Print only works when debugging an app. When the app is built for running. Swift.print doesn't work anymore. Use file logging in release if needed
-- Use the Telemetry for GA hock
+- Print only works when debugging an app. When the app is built for running, Swift.print doesn't work anymore. Use file logging in release if needed.
+- Use the Telemetry for GA hook.
 
 ### Todo:
-- Maybe include the `Trace.trace()` call in log call so it can be toggled on and off 🤔
-- Add the tag-type emoji to output just before msg etc
-- Figure out how to log fatal crash? is it possible? exceptions? Research needed
-- Do more stackoverflow search on logging best practice etc
-- Add terminal color to formating text: https://github.com/sushichop/Puppy/blob/main/Sources/Puppy/LogColor.swift
-- Add os support:  https://www.avanderlee.com/debugging/oslog-unified-logging/
-- Try Firebase crashalytics in a demo project
-- Add support for oslog in the framework. We currently support it in the ad-hock callback. Add this to unit test as well as instructions on Console.app usage and limitations etc
-- Maybe add another log type called important?
+- Consider including the `Trace.trace()` call in log call so it can be toggled on and off.
+- Add the tag-type emoji to output just before the message.
+- Research how to log fatal crashes, if possible. Exception handling needs to be explored.
+- Conduct more research on logging best practices.
+- Add terminal color to formatting text: https://github.com/sushichop/Puppy/blob/main/Sources/Puppy/LogColor.swift
+- Add OS support:  https://www.avanderlee.com/debugging/oslog-unified-logging/
+- Test Firebase Crashlytics in a demo project.
+- Add support for oslog in the framework. We currently support it in the ad-hoc callback. Add this to unit test as well as instructions on Console.app usage and limitations.
+- Consider adding another log type called "important".
