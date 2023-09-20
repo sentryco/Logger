@@ -2,44 +2,48 @@ import XCTest
 import Logger
 import FileSugar
 
+// LoggerTests class inherits from XCTestCase
 final class LoggerTests: XCTestCase {
+   // Test function that calls various logging methods
    func testExample() throws {
-      Self.log2consol()
-      Self.log2CustomOutput()
-      // Self.log2file()
-      Self.testTrace()
-      // - Fixme: ⚠️️ Begin Telemetry lib for GA
+      Self.log2consol() // Logs to console
+      Self.log2CustomOutput() // Logs to custom output
+      // Self.log2file() // Logs to file
+      Self.testTrace() // Tests trace functionality
+      // TODO: Implement Telemetry library for Google Analytics
    }
 }
+
 extension LoggerTests {
    /**
-    * Write to console with a few different modes
+    * Function to log messages to the console in different modes
     */
    fileprivate static func log2consol() {
       Swift.print("log2consol")
-      // Print text format
+      // Set Logger configuration to plain text format
       Logger.config = .plain // .full
-      // Output transport
+      // Set Logger output transport to console
       Logger.type = .console // .file(filePath)
-      // Levels and tags
+      // Set Logger levels and tags
       Logger.mode = .everything // .nothing, .essential
       Logger.debug("MainView.test()", tag: .ui)
       Logger.config = .full
       Logger.mode = .essential
-      Logger.debug("MainView.test()", tag: .ui) // this doesnt show in essential mode
+      Logger.debug("MainView.test()", tag: .ui) // this doesn't show in essential mode
       Logger.warn("UserDef not saved", tag: .file) // this shows in essential mode
       Logger.config = .full // show all details
       Logger.error("Wrong format when trying to save", tag: .file) // this shows in essential mode
    }
    /**
-    * We can call GA (google analytics) or firebase crashalytics here
-    * - Remark: We could also filter on tag. To focus on data, network, security etc
+    * Function to log messages to custom output like Google Analytics or Firebase Crashlytics
+    * Note: We could also filter on tag to focus on data, network, security etc
     */
    fileprivate static func log2CustomOutput() {
       Swift.print("log2CustomOutput")
       let onLog: LogType.OnLog = { msg, level, _ in
+         // Only print warning and error messages, simulating call to Google Analytics etc
          if [LogLevel.error, .warning].contains(where: { $0 == level }) {
-            Swift.print(msg) // Only prints warning and error, simulates call to GA etc
+            Swift.print(msg) 
          }
       }
       Logger.type = .custom(onLog) // Add the custom output closure to the logger
@@ -49,9 +53,9 @@ extension LoggerTests {
       Logger.debug("Entered backround") // Does not print
    }
    /**
-    * Write to file, assert content
-    * - Fixme: ⚠️️ we could omit date and assert correct content of file
-    * - Fixme: ⚠️️ we should probably creat the temp file if it doesn't already exist etc
+    * Function to log messages to a file and assert its content
+    * TODO: Omit date and assert correct content of file
+    * TODO: Create the temp file if it doesn't already exist etc
     */
    fileprivate static func log2file() {
       Swift.print("log2file")
@@ -64,7 +68,7 @@ extension LoggerTests {
       XCTAssertTrue(fileExists)
    }
    /**
-    * do Trace
+    * Function to test trace functionality
     */
    fileprivate static func testTrace() {
       Swift.print("testTrace")

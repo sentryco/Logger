@@ -1,6 +1,11 @@
 import Foundation
+
 /**
- * Noise level in the console
+ * `LogMode` is a structure that defines the noise level in the console.
+ * It consists of two properties: `tag` and `level`.
+ * `tag` is a filter for the type of logs to be displayed.
+ * `level` is a filter for the severity of logs to be displayed.
+ *
  * ## Example:
  * let mode: LogMode = .init(tag: LogTag.allCases.filter { $0 != .net && $0 != .db && $0 != .security }, level: LogLevel.allCases)
  */
@@ -12,33 +17,41 @@ public struct LogMode {
       self.level = level
    }
 }
+
 /**
- * Const
- * - Fixme: ⚠️️ is this needed? Seems like we use custom setup most of the time anyways, remove? I guess it can be nice to get started? see example use cases etc?
- * - Fixme: ⚠️️ add examples to each type?
+ * Extension of `LogMode` to define some constant log modes.
+ * These can be used for quick setup or for common use cases.
  */
 extension LogMode {
    /**
-    * Log error, warning, info
+    * `everything` logs all types of logs at all levels.
     */
    public static let everything: LogMode = .init(tag: LogTag.allCases, level: LogLevel.allCases)
+   
    /**
-    * Log nothing (so we can use regular print for stuff etc)
+    * `nothing` does not log anything. This can be useful when you want to use regular print statements for debugging.
     */
    public static let nothing: LogMode = .init(tag: [], level: [])
+   
    /**
-    * Moderate
+    * `essential` logs all types of logs but only at warning and error levels.
     */
    public static let essential: LogMode = .init(tag: LogTag.allCases, level: [.warning, .error])
 }
+
 /**
- * TagFilter
+ * `TagFilter` is a type alias for an array of `LogTag`.
+ * It is used to specify the types of logs to be displayed.
+ *
  * ## Examples:
  * LogTag.allCases.filter { $0 != .net && $0 != .db && $0 != .security }
  */
 public typealias TagFilter = [LogTag] // [.db, .net, .file, .ui, .security, .other]
+
 /**
- * LevelFilter
+ * `LevelFilter` is a type alias for an array of `LogLevel`.
+ * It is used to specify the severity of logs to be displayed.
+ *
  * ## Examples:
  * LogLevel.allCases.filter({ $0 != .info })
  */

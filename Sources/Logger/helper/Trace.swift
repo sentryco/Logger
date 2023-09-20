@@ -1,8 +1,12 @@
 import Foundation
 
+/*
+* Trace class is used for debugging purposes. It provides methods to print out the method name, line number, and custom messages.
+*/
 public class Trace {
    /**
-    * To make it work you must set the "DEBUG" symbol, set it in the "Swift Compiler - Custom Flags" section, "Other Swift Flags" line.
+    * trace function prints a custom message along with the function name, class name, and line number where it is called.
+    * - Note: To make it work you must set the "DEBUG" symbol, set it in the "Swift Compiler - Custom Flags" section, "Other Swift Flags" line.
     * - Remark: You add the DEBUG symbol with the -D DEBUG entry.
     * - Remark: From here: https://stackoverflow.com/questions/41974883/how-to-print-out-the-method-name-and-line-number-in-swift
     * - Remark: There is also: columnNumber: Int = #column -> The column number in which it begins.
@@ -22,6 +26,7 @@ public class Trace {
 	   return "\(message) is called from function: \(function) in class: \(className) on line: \(line)"
 	}
    /**
+    * trace function prints the function name along with the class name where it is called.
     * Outputs: "FileManger.save" or "NetManager.connect" etc
     */
    public static func trace(file: String = #file, function: String = #function) -> String {
@@ -31,26 +36,27 @@ public class Trace {
       return "\(className).\(function)"
    }
 }
+
 /**
- * String ext
+ * Extension of String class to add utility functions.
  */
 extension String {
    /**
-    * trim left and right
+    * trim function removes the specified prefix and suffix from the string.
     */
    fileprivate mutating func trim(left: String, right: String) {
       self = removePrefix(prefix: left)
       self = removeSuffix(suffix: right)
    }
    /**
-    * Removes the first occurence of the the prefix
+    * removePrefix function removes the specified prefix from the string.
     */
    fileprivate func removePrefix(prefix: String) -> String {
       guard self.hasPrefix(prefix) else { return self }
       return "\(self.dropFirst(prefix.count))"
    }
    /**
-    * Removes suffix from string
+    * removeSuffix function removes the specified suffix from the string.
     */
    fileprivate func removeSuffix(suffix: String) -> String {
       guard self.hasSuffix(suffix) else { return self }

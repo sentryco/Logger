@@ -1,33 +1,41 @@
 import Foundation
 import FileSugar
+
 /**
  * LogType
+ * This enum defines the different types of logging that can be performed.
  * - Fixme: ⚠️️ Add later `.os`, `.sys`, (syslog, and oslog)
  */
 public enum LogType {
    /**
-    * Print to console or not
-    * - Fixme: ⚠️️ Rename to print? and then use consol for .os etc ? or remove?
+    * Console logging type.
+    * This case is used when the logs need to be printed to the console.
+    * - Fixme: ⚠️️ Rename to print? and then use console for .os etc ? or remove?
     */
    case console
    /**
-    * Use FileStream lib to append to a diagnostics.log or log.txt
+    * File logging type.
+    * This case is used when the logs need to be written to a file.
     * - Remark: Temp: "\(NSTemporaryDirectory())/log.txt"
     * - Remark: Home: "\(NSHomeDirectory())/log.txt"
     */
    case file(_ filePath: String)
    /**
-    * Pull closure from a variable where we can adhock functinality
-    * - Fixme: ⚠️️ Add examle
+    * Custom logging type.
+    * This case is used when the logs need to be handled by a custom function.
+    * - Fixme: ⚠️️ Add example
     */
    case custom(_ onLog: OnLog)
 }
+
 /**
- * Helper
+ * LogType extension for logging helper.
+ * This extension provides a function to log messages based on the LogType.
  */
 extension LogType {
    /**
     * Log to type
+    * This function logs the message to the specified log type.
     * - Parameters:
     *   - msg: Message to print
     *   - level: Severity level to filter on etc
@@ -40,34 +48,40 @@ extension LogType {
       case let .file(filePath): // File
          Self.writeToFile(string: msg, filePath: filePath)
       case let .custom(onLog): // Custom
-         onLog(msg, level, tag) // Call clousure
+         onLog(msg, level, tag) // Call closure
       }
    }
 }
+
 /**
- * Custom
+ * LogType extension for custom logging.
+ * This extension provides a typealias for a closure that can be used for custom logging.
  */
 extension LogType {
    /**
-    * Closure hock typealias for custom output
+    * Closure hook typealias for custom output
+    * This typealias defines a closure that can be used for custom logging.
     * - Remark: It could be a good idea to filter calls if device is in the background / standby via: `UIApplication.shared.applicationState == .active`
-    * - Fixme: ⚠️️ doc each param
+    * - Fixme: ⚠️️ document each parameter
     */
    public typealias OnLog = (_ msg: String, _ level: LogLevel, _ tag: LogTag) -> Void
 }
+
 /**
- * File
+ * LogType extension for file logging.
+ * This extension provides a function to write logs to a file.
  */
 extension LogType {
    /**
-    *  Idicates app was started again
+    *  Indicates if a new log session was started.
     */
    public static var isNewLogSession = false
    /**
     * Write text to file
+    * This function writes a string to a file.
     * - Remark: By using temp folder, the file is removed automatically at some point
     * - Remark: Logs might be lost in temp folder if automation needs to kill the app.
-    * - Fixme: ⚠️️ Maybe auto-create new file if size excedes 3MB etc, temp folder do remove content if it gets to big etc I think, so add this later etc
+    * - Fixme: ⚠️️ Maybe auto-create new file if size exceeds 3MB etc, temp folder do remove content if it gets too big etc I think, so add this later etc
     * - Parameters:
     *   - string: Make sure to add \n to end
     *   - filePath: Destination file path, usually temp folder path etc
@@ -79,7 +93,7 @@ extension LogType {
       }
       if isNewLogSession == false { // Indicates new app session
          content += "New session started" + "\n"
-         isNewLogSession = true // only triger once per app session
+         isNewLogSession = true // only trigger once per app session
       }
       content += string + "\n" // Add string
       FileModifier.append(filePath, text: content) // Append content to end of file
