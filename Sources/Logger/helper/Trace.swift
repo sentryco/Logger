@@ -22,8 +22,8 @@ public class Trace {
     */
    public static func trace(_ message: String, file: String = #file, function: String = #function, line: Int = #line ) -> String {
 		let fileName = (file as NSString).lastPathComponent // File path isn't imp
-      let className = fileName.split(separator: ".").dropLast()
-	   return "\(message) is called from function: \(function) in class: \(className) on line: \(line)"
+      let className = fileName.split(separator: ".").dropLast() // Get the class name by splitting the file name and dropping the last component
+      return "\(message) is called from function: \(function) in class: \(className) on line: \(line)" // Return the formatted trace message
 	}
    /**
     * trace function prints the function name along with the class name where it is called.
@@ -31,12 +31,11 @@ public class Trace {
     */
    public static func trace(file: String = #file, function: String = #function) -> String {
       let fileName = (file as NSString).lastPathComponent // File path isn't imp
-      var className: String = "\(fileName.split(separator: ".").dropLast())"
+      var className: String = "\(fileName.split(separator: ".").dropLast())" // Split the file name by "." and drop the last component to get the class name
       className.trim(left: "[\"", right: "\"]") // let functionName = function.removeSuffix(suffix: "()")
-      return "\(className).\(function)"
+      return "\(className).\(function)"// Return the formatted string that includes the class name and function name
    }
 }
-
 /**
  * Extension of String class to add utility functions.
  */
@@ -45,21 +44,21 @@ extension String {
     * trim function removes the specified prefix and suffix from the string.
     */
    fileprivate mutating func trim(left: String, right: String) {
-      self = removePrefix(prefix: left)
-      self = removeSuffix(suffix: right)
+      self = removePrefix(prefix: left) // Remove the left prefix from the trace message
+      self = removeSuffix(suffix: right) // Remove the right suffix from the trace message
    }
    /**
     * removePrefix function removes the specified prefix from the string.
     */
    fileprivate func removePrefix(prefix: String) -> String {
-      guard self.hasPrefix(prefix) else { return self }
-      return "\(self.dropFirst(prefix.count))"
+      guard self.hasPrefix(prefix) else { return self } // Check if the trace message has the specified prefix
+      return "\(self.dropFirst(prefix.count))" // Remove the prefix from the trace message and return the result
    }
    /**
     * removeSuffix function removes the specified suffix from the string.
     */
    fileprivate func removeSuffix(suffix: String) -> String {
-      guard self.hasSuffix(suffix) else { return self }
-      return "\(self.dropLast(suffix.count))"
+      guard self.hasSuffix(suffix) else { return self } // Check if the trace message has the specified suffix
+      return "\(self.dropLast(suffix.count))" // Remove the suffix from the trace message and return the result
    }
 }

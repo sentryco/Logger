@@ -20,6 +20,7 @@
 - Sending errors to endpoints like Google Analytics or Firebase Crashlytics is beneficial.
 
 
+
 ### Logging format:
 ```swift
 Logger.debug(text: "Network.connect - connection established successfully", type: .net)
@@ -78,6 +79,24 @@ Logger.warn("\(Trace.trace() - error occured", tag: .net) - error occured") // C
 ### Gotchas
 - Print only works when debugging an app. When the app is built for running, Swift.print doesn't work anymore. Use file logging in release if needed.
 - Use the Telemetry for GA hook.
+
+## Installation
+Add the following line to your `Package.swift` file:
+
+```swift
+.package(url: "https://github.com/sentryco/Logger.git", branch: "main")
+```
+
+Then add `Logger` as a dependency for your targets:
+
+```swift
+.target(
+    name: "MyTarget",
+    dependencies: [
+        .product(name: "Logger", package: "Logger"),
+    ]
+),
+```
 
 ### Todo:
 - Consider including the `Trace.trace()` call in log call so it can be toggled on and off.

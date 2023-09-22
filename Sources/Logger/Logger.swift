@@ -67,7 +67,6 @@ extension Logger {
    public static func debug(_ msg: String, tag: LogTag = .other) {
       log(msg, level: .debug, tag: tag)
    }
-
    /**
     * Method to log warnings, useful for identifying semi-critical issues that don't break anything
     * - Parameters:
@@ -77,7 +76,6 @@ extension Logger {
    public static func warn(_ msg: String, tag: LogTag =  .other) {
       log(msg, level: .warning, tag: tag)
    }
-
    /**
     * Method to log errors, useful for identifying issues that break something but might be recoverable
     * - Parameters:
@@ -88,7 +86,6 @@ extension Logger {
       log(msg, level: .error, tag: tag)
    }
 }
-
 /**
  * Extension to add private helper methods to the Logger class
  */
@@ -115,10 +112,10 @@ extension Logger {
     *   - tag: Type of logging, e.g., payment, network, database, etc.
     */
    fileprivate static func text(_ msg: String, level: LogLevel, tag: LogTag) -> String {
-      let level: String = config.useVerboseTypeText ? "\(level.title) \(level.rawValue)" : "\(level.rawValue)"
-      var text: String = "[\(level)]"
-      let date: String = config.dateFormatter.string(from: .init())
-      if config.showDate { text += " [\(date)]" }
-      return "\(text) ➞ \(tag.rawValue) \(msg)"
+      let level: String = config.useVerboseTypeText ? "\(level.title) \(level.rawValue)" : "\(level.rawValue)" // if the config flag is set to use verbose type text, add the title and raw value of the level, otherwise just add the raw value
+      var text: String = "[\(level)]" // create the log message with the level enclosed in square brackets
+      let date: String = config.dateFormatter.string(from: .init()) // get the current date and format it as a string
+      if config.showDate { text += " [\(date)]" } // if the config flag is set to show the date, add it to the log message
+      return "\(text) ➞ \(tag.rawValue) \(msg)" // return the formatted log message with the tag and message concatenated
    }
 }

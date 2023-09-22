@@ -26,8 +26,11 @@ extension LoggerTests {
       Logger.type = .console // .file(filePath)
       // Set Logger levels and tags
       Logger.mode = .everything // .nothing, .essential
+      // Log a debug message with the UI tag
       Logger.debug("MainView.test()", tag: .ui)
+      // Set the logger configuration to full
       Logger.config = .full
+      // Set the logger mode to essential
       Logger.mode = .essential
       Logger.debug("MainView.test()", tag: .ui) // this doesn't show in essential mode
       Logger.warn("UserDef not saved", tag: .file) // this shows in essential mode

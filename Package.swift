@@ -3,22 +3,22 @@
 import PackageDescription
 
 let package = Package(
-    name: "Logger",
-    platforms: [.iOS(.v15), .macOS(.v12)],
+    name: "Logger", // Name of the package
+    platforms: [.iOS(.v15), .macOS(.v12)], // Platforms the package supports
     products: [
         .library(
-            name: "Logger",
-            targets: ["Logger"])
+            name: "Logger", // Name of the library
+            targets: ["Logger"]) // Targets that are part of the library
     ],
     dependencies: [
-      .package(url: "https://github.com/eonist/FileSugar.git", branch: "master")
+      .package(url: "https://github.com/eonist/FileSugar.git", branch: "master") // Dependencies of the package
     ],
     targets: [
         .target(
-            name: "Logger",
-            dependencies: ["FileSugar"]),
+            name: "Logger", // Name of the target
+            dependencies: ["FileSugar"]), // Dependencies of the target
         .testTarget(
-            name: "LoggerTests",
-            dependencies: ["Logger"])
+            name: "LoggerTests", // Name of the test target
+            dependencies: ["Logger"]) // Dependencies of the test target
     ]
 )
