@@ -1,11 +1,10 @@
 import Foundation
-
 /**
  * Logger class for logging events, errors, warnings, and information.
  */
 public final class Logger {}
-public typealias Log = Logger // Alias for Logger, useful when os.Logger is available from iOS 14 onwards
-
+// Alias for Logger, useful when os.Logger is available from iOS 14 onwards
+public typealias Log = Logger 
 /**
  * Extension to add configuration properties to the Logger class
  */
@@ -47,6 +46,9 @@ extension Logger {
 extension Logger {
    /**
     * Method to log regular app events, useful for understanding other critical events
+    * ## Examples:
+    * Logger.info("Payment received successfully", tag: .payment) 
+    * Output: [INFO] [2022-08-01 12:00:00] ➞ payment Payment received successfully
     * - Parameters:
     *   - msg: Message to log, can include trace and custom message
     *   - tag: Type of logging, e.g., payment, network, database, etc.
@@ -58,7 +60,7 @@ extension Logger {
    /**
     * Method to log debug information, useful for identifying and fixing bugs
     * ## Example:
-    * Logger.warn(text: "BPManager.connect error: \(error.localDescription)", type: .net)
+    * Logger.debug(text: "BPManager.connect error: \(error.localDescription)", type: .net)
     * Output: [🟠 Debug] [23-12-24 22:00:45] ➞ 📡 Network.connect error: Wifi not turned on
     * - Parameters:
     *   - msg: Message to log, can include trace and custom message
@@ -69,6 +71,9 @@ extension Logger {
    }
    /**
     * Method to log warnings, useful for identifying semi-critical issues that don't break anything
+    * ## Examples:
+    * Logger.warn("Payment processing is taking longer than expected", tag: .other)
+    * Output: [WARNING] [2022-08-01 12:00:00] ➞ other Payment processing is taking longer than expected
     * - Parameters:
     *   - msg: Message to log, can include trace and custom message
     *   - tag: Type of logging, e.g., payment, network, database, etc.
@@ -99,9 +104,9 @@ extension Logger {
     */
    fileprivate static func log(_ msg: String, level: LogLevel, tag: LogTag) {
       guard mode.level.contains(where: { $0 == level }) else { return } // Filter level
-      guard mode.tag.contains(where: { $0 == tag }) else { return } // filter on tag
-      let text: String = text(msg, level: level, tag: tag) // get formatted print output
-      type.log(msg: text, level: level, tag: tag) // log to console or file
+      guard mode.tag.contains(where: { $0 == tag }) else { return } // Filter tag
+      let text: String = text(msg, level: level, tag: tag) // Get formatted print output
+      type.log(msg: text, level: level, tag: tag) // Log to console or file
    }
 
    /**

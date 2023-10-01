@@ -8,8 +8,10 @@ import Foundation
  * let mode: LogMode = .init(tag: LogTag.allCases.filter { $0 != .net && $0 != .db && $0 != .security }, level: LogLevel.allCases)
  */
 public struct LogMode {
-   public let tag: TagFilter // The tag filter for the log mode
-   public let level: LevelFilter // The level filter for the log mode
+   // The tag filter for the log mode
+   public let tag: TagFilter 
+   // The level filter for the log mode
+   public let level: LevelFilter 
    /**
     * Initializes a new `LogMode` instance with the specified tag and level filters.
     * - Parameters:
