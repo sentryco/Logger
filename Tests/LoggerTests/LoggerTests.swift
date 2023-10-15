@@ -46,7 +46,7 @@ extension LoggerTests {
       let onLog: LogType.OnLog = { msg, level, _ in
          // Only print warning and error messages, simulating call to Google Analytics etc
          if [LogLevel.error, .warning].contains(where: { $0 == level }) {
-            Swift.print(msg) 
+            Swift.print(msg)
          }
       }
       Logger.type = .custom(onLog) // Add the custom output closure to the logger

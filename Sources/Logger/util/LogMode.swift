@@ -9,9 +9,9 @@ import Foundation
  */
 public struct LogMode {
    // The tag filter for the log mode
-   public let tag: TagFilter 
+   public let tag: TagFilter
    // The level filter for the log mode
-   public let level: LevelFilter 
+   public let level: LevelFilter
    /**
     * Initializes a new `LogMode` instance with the specified tag and level filters.
     * - Parameters:

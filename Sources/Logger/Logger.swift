@@ -4,7 +4,7 @@ import Foundation
  */
 public final class Logger {}
 // Alias for Logger, useful when os.Logger is available from iOS 14 onwards
-public typealias Log = Logger 
+public typealias Log = Logger
 /**
  * Extension to add configuration properties to the Logger class
  */
