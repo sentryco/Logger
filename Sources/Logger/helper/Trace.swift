@@ -21,7 +21,7 @@ public class Trace {
     *   - line: The line number on which it appears
     */
    public static func trace(_ message: String, file: String = #file, function: String = #function, line: Int = #line ) -> String {
-		let fileName = (file as NSString).lastPathComponent // File path isn't imp
+		let fileName: String = (file as NSString).lastPathComponent // File path isn't imp
       let className = fileName.split(separator: ".").dropLast() // Get the class name by splitting the file name and dropping the last component
       return "\(message) is called from function: \(function) in class: \(className) on line: \(line)" // Return the formatted trace message
 	}
@@ -30,7 +30,7 @@ public class Trace {
     * Outputs: "FileManger.save" or "NetManager.connect" etc
     */
    public static func trace(file: String = #file, function: String = #function) -> String {
-      let fileName = (file as NSString).lastPathComponent // File path isn't imp
+      let fileName: String = (file as NSString).lastPathComponent // File path isn't imp
       var className: String = "\(fileName.split(separator: ".").dropLast())" // Split the file name by "." and drop the last component to get the class name
       className.trim(left: "[\"", right: "\"]") // let functionName = function.removeSuffix(suffix: "()")
       return "\(className).\(function)"// Return the formatted string that includes the class name and function name

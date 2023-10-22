@@ -8,9 +8,13 @@ import Foundation
  * let mode: LogMode = .init(tag: LogTag.allCases.filter { $0 != .net && $0 != .db && $0 != .security }, level: LogLevel.allCases)
  */
 public struct LogMode {
-   // The tag filter for the log mode
+   /**
+    * The tag filter for the log mode.
+    */
    public let tag: TagFilter
-   // The level filter for the log mode
+   /**
+    * The level filter for the log mode.
+    */
    public let level: LevelFilter
    /**
     * Initializes a new `LogMode` instance with the specified tag and level filters.
@@ -41,7 +45,6 @@ extension LogMode {
     */
    public static let essential: LogMode = .init(tag: LogTag.allCases, level: [.warning, .error])
 }
-
 /**
  * `TagFilter` is a type alias for an array of `LogTag`.
  * It is used to specify the types of logs to be displayed.

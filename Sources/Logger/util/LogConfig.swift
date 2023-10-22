@@ -38,7 +38,7 @@ extension LogConfig {
     * - Note: In the context of the LogConfig struct, the en_US_POSIX locale is used to ensure that the date and time formatting is consistent regardless of the user's locale settings
     */
    var dateFormatter: DateFormatter {
-      let format = DateFormatter() // Create a new DateFormatter instance
+      let format: DateFormatter = .init() // Create a new DateFormatter instance
       format.dateFormat = dateFormat // Set the date format to the specified format
       format.timeZone = TimeZone(identifier: "UTC") // Set the time zone to UTC
       format.locale = Locale(identifier: "en_US_POSIX") // Set the locale to US English
@@ -56,7 +56,11 @@ extension LogConfig {
     * Output: [INFO] ➞ Payment received successfully
     */
    public static let plain: LogConfig = {
-      .init(showDate: false, useVerboseTypeText: false, dateFormat: defaultDateFormat)
+      .init(
+         showDate: false, // Whether to include the timestamp in the log
+         useVerboseTypeText: false, // Whether to include text with the emoji in the log
+         dateFormat: defaultDateFormat // The date format to use. Default is "yyyy-MM-dd' 'HH:mm:ss".
+      )
    }()
    /**
     * Full is a predefined LogConfig that shows date and uses verbose type text.
@@ -67,6 +71,10 @@ extension LogConfig {
     * Output: [INFO] [2022-08-01 12:00:00] ✅ payment Payment received successfully
     */
    public static let full: LogConfig = {
-      .init(showDate: true, useVerboseTypeText: true, dateFormat: defaultDateFormat)
+      .init(
+         showDate: true, // Whether to include the timestamp in the log
+         useVerboseTypeText: true, // Whether to include text with the emoji in the log
+         dateFormat: defaultDateFormat // The date format to use. Default is "yyyy-MM-dd' 'HH:mm:ss".
+      )
    }()
 }

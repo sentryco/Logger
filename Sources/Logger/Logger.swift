@@ -13,18 +13,15 @@ extension Logger {
     * Configuration for the log format
     */
    public static var config: LogConfig = .full
-
    /**
     * Configuration for the log level and tag
     */
    public static var mode: LogMode = .everything
-
    /**
     * Configuration for the log type: console, file, or custom
     * - Remark: Currently, only one type is supported at a time
     */
    public static var type: LogType = .console
-
    /**
     * Method to set up the logger with specific configuration, mode, and type
     * - Parameters:
@@ -38,7 +35,6 @@ extension Logger {
       Self.type = type
    }
 }
-
 /**
  * Extension to add logging commands to the Logger class
  * - Fixme: ⚠️️ Add later: add class and line to end of msg aka the code that is in Trace.trace
@@ -56,7 +52,6 @@ extension Logger {
    public static func info(_ msg: String, tag: LogTag = .other) {
       log(msg, level: .info, tag: tag)
    }
-
    /**
     * Method to log debug information, useful for identifying and fixing bugs
     * ## Example:
@@ -108,7 +103,6 @@ extension Logger {
       let text: String = text(msg, level: level, tag: tag) // Get formatted print output
       type.log(msg: text, level: level, tag: tag) // Log to console or file
    }
-
    /**
     * Method to format the log output
     * - Parameters:

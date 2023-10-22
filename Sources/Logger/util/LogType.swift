@@ -51,7 +51,6 @@ extension LogType {
       }
    }
 }
-
 /**
  * LogType extension for custom logging.
  * This extension provides a typealias for a closure that can be used for custom logging.
@@ -65,7 +64,6 @@ extension LogType {
     */
    public typealias OnLog = (_ msg: String, _ level: LogLevel, _ tag: LogTag) -> Void
 }
-
 /**
  * LogType extension for file logging.
  * This extension provides a function to write logs to a file.
@@ -74,7 +72,7 @@ extension LogType {
    /**
     *  Indicates if a new log session was started.
     */
-   public static var isNewLogSession = false
+   public static var isNewLogSession: Bool = false
    /**
     * Write text to file
     * This function writes a string to a file.

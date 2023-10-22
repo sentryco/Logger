@@ -43,7 +43,7 @@ extension LoggerTests {
     */
    fileprivate static func log2CustomOutput() {
       Swift.print("log2CustomOutput")
-      let onLog: LogType.OnLog = { msg, level, _ in
+      let onLog: LogType.OnLog = { (msg: String, level: LogLevel, _: LogTag) in
          // Only print warning and error messages, simulating call to Google Analytics etc
          if [LogLevel.error, .warning].contains(where: { $0 == level }) {
             Swift.print(msg)
@@ -62,11 +62,11 @@ extension LoggerTests {
     */
    fileprivate static func log2file() {
       Swift.print("log2file")
-      let tempFilePath = "\(NSTemporaryDirectory())/log.txt"
+      let tempFilePath: String = "\(NSTemporaryDirectory())/log.txt"
       Logger.type = .file(tempFilePath)
       Logger.debug("Test")
       Swift.print("LogType.tempFilePath:  \(tempFilePath)")
-      let fileExists = FileAsserter.exists(path: tempFilePath)
+      let fileExists: Bool = FileAsserter.exists(path: tempFilePath)
       Swift.print("fileExists\(fileExists ? "✅" : "🚫")")
       XCTAssertTrue(fileExists)
    }
