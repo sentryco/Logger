@@ -41,9 +41,8 @@ Logger.mode = .everything // .nothing, .essential
 Logger.setup(config: .plain, mode: .everything, type: .console)
 ```
 
-> **Warning**  
+> [!NOTE]  
 > Since iOS14+ Target apples own Logger class, write: `os.Logger`
-
 
 ### Add custom log end-point like GA or Firebase crashalytics
 ```swift
