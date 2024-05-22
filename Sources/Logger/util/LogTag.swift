@@ -2,9 +2,9 @@ import Foundation
 
 /**
  * This file contains the LogTag enum which is used to categorize logs.
- * Each case in the enum represents a different category of logs.
- * The raw value of each case is an emoji that visually represents the category.
- * Remark: It's nice to turn off network logs sometimes etc, as they can be annoying and verbose.
+ * - Note: Each case in the enum represents a different category of logs.
+ * - Note: The raw value of each case is an emoji that visually represents the category.
+ * - Remark: It's nice to turn off network logs sometimes etc, as they can be annoying and verbose.
  * - Fixme: ⚠️️ We can make emojis customizable, see note in LogLevel
  * - Fixme: ⚠️️ Consider adding an appstore log category, or is payment good enough?
  */

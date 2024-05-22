@@ -1,7 +1,7 @@
 import Foundation
 /**
  * This enum represents different log levels available for print.
- * Each log level is associated with an emoji for visual representation.
+ * - Description: Each log level is associated with an emoji for visual representation.
  * - Remark: Alternative emojis: ☠️ 📣 ⚠️ 🚧 ☣️ 🚨 🟢 🟤 🟡
  * - Remark: Alternative titles: alert, info, success, event, debug, notice, warning, verbose, emergency, severe
  * - Fixme: ⚠️️ Emojis could be customizable: `static var warningEmojiSymbol = "" static var debugEmojiSymbol = "" static var errorEmojiSymbol = ""` etc
@@ -33,7 +33,7 @@ public enum LogLevel: String, CaseIterable { // Severity: fatal, critical, norma
 extension LogLevel {
    /**
     * Returns the title of the log level, which can be "Error", "Warning", "Info" or "Debug".
-    * The title is the string representation of the log level, with the first letter capitalized.
+    * - Description: The title is the string representation of the log level, with the first letter capitalized.
     */
    var title: String {
       String(describing: self).capitalized // First letter is uppercased

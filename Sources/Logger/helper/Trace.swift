@@ -1,11 +1,11 @@
 import Foundation
 /**
  * Trace class is used for debugging purposes. 
- * It provides methods to print out the method name, line number, and custom messages.
+ * - Description: It provides methods to print out the method name, line number, and custom messages.
  */
 public class Trace {
    /**
-    * trace function prints a custom message along with the function name, class name, and line number where it is called.
+    * Trace function prints a custom message along with the function name, class name, and line number where it is called.
     * - Note: To make it work you must set the "DEBUG" symbol, set it in the "Swift Compiler - Custom Flags" section, "Other Swift Flags" line.
     * - Remark: You add the DEBUG symbol with the -D DEBUG entry.
     * - Remark: From here: https://stackoverflow.com/questions/41974883/how-to-print-out-the-method-name-and-line-number-in-swift

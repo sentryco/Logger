@@ -19,8 +19,6 @@
 - Fixing network bugs becomes easier when UI and DB logging can be turned off.
 - Sending errors to endpoints like Google Analytics or Firebase Crashlytics is beneficial.
 
-
-
 ### Logging format:
 ```swift
 Logger.debug(text: "Network.connect - connection established successfully", type: .net)
@@ -99,12 +97,13 @@ Then add `Logger` as a dependency for your targets:
 ```
 
 ### Todo:
-- Consider including the `Trace.trace()` call in log call so it can be toggled on and off.
-- Add the tag-type emoji to output just before the message.
-- Research how to log fatal crashes, if possible. Exception handling needs to be explored.
-- Conduct more research on logging best practices.
+- Consider including the `Trace.trace()` call in log call so it can be toggled on and off
+- Add the tag-type emoji to output just before the message
+- Research how to log fatal crashes, if possible. Exception handling needs to be explored
+- Conduct more research on logging best practices
 - Add terminal color to formatting text: https://github.com/sushichop/Puppy/blob/main/Sources/Puppy/LogColor.swift
-- Add OS support:  https://www.avanderlee.com/debugging/oslog-unified-logging/
-- Test Firebase Crashlytics in a demo project.
+- Add native OS support:  https://www.avanderlee.com/debugging/oslog-unified-logging/
+- Test Firebase Crashlytics in a demo project
 - Add support for oslog in the framework. We currently support it in the ad-hoc callback. Add this to unit test as well as instructions on Console.app usage and limitations.
-- Consider adding another log type called "important".
+- Consider adding another log type called "important"
+- Add usage gif exploring system console, google-analytics, xcode consol

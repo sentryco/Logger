@@ -1,5 +1,7 @@
 import Foundation
-// LogConfig is a structure that defines the configuration for logging.
+/**
+ * LogConfig is a structure that defines the configuration for logging.
+ */
 public struct LogConfig {
    public let showDate: Bool // Determines whether to include the timestamp at the beginning of the log.
    public let useVerboseTypeText: Bool // Determines whether to include text with the emoji in the log.

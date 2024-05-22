@@ -1,19 +1,24 @@
 import XCTest
 import Logger
 import FileSugar
-
-// LoggerTests class inherits from XCTestCase
+/**
+ * LoggerTests class inherits from XCTestCase
+ */
 final class LoggerTests: XCTestCase {
-   // Test function that calls various logging methods
+   /**
+    * Test function that calls various logging methods
+    */
    func testExample() throws {
-      Self.log2consol() // Logs to console
+      Self.log2consol() // Logs to "system" console
       Self.log2CustomOutput() // Logs to custom output
       // Self.log2file() // Logs to file
       Self.testTrace() // Tests trace functionality
-      // TODO: Implement Telemetry library for Google Analytics
+      // - Fixme: ⚠️️ Implement Telemetry library for Google Analytics, there is code for this in telemetry maybe?
    }
 }
-
+/**
+ * - Fixme: ⚠️️ add doc
+ */
 extension LoggerTests {
    /**
     * Function to log messages to the console in different modes
@@ -39,7 +44,7 @@ extension LoggerTests {
    }
    /**
     * Function to log messages to custom output like Google Analytics or Firebase Crashlytics
-    * Note: We could also filter on tag to focus on data, network, security etc
+    * - Note: We could also filter on tag to focus on data, network, security etc
     */
    fileprivate static func log2CustomOutput() {
       Swift.print("log2CustomOutput")
@@ -57,8 +62,8 @@ extension LoggerTests {
    }
    /**
     * Function to log messages to a file and assert its content
-    * TODO: Omit date and assert correct content of file
-    * TODO: Create the temp file if it doesn't already exist etc
+    * - Fixme: ⚠️️ Omit date and assert correct content of file
+    * - Fixme: ⚠️️ Create the temp file if it doesn't already exist etc
     */
    fileprivate static func log2file() {
       Swift.print("log2file")

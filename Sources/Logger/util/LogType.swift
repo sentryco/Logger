@@ -2,26 +2,27 @@ import Foundation// Import the Foundation framework for basic data types and ope
 import FileSugar// Import the FileSugar framework for file system operations
 /**
  * LogType
- * This enum defines the different types of logging that can be performed.
+ * - Description: This enum defines the different types of logging that can be performed.
  * - Fixme: ⚠️️ Add later `.os`, `.sys`, (syslog, and oslog)
  */
 public enum LogType {
    /**
     * Console logging type.
-    * This case is used when the logs need to be printed to the console.
+    * - Description: This case is used when the logs need to be printed to the console
     * - Fixme: ⚠️️ Rename to print? and then use console for .os etc ? or remove?
+    * - Fixme: ⚠️️ clearify which onsole this is, xcode or system consol etc?
     */
    case console
    /**
     * File logging type.
-    * This case is used when the logs need to be written to a file.
+    * - Description: This case is used when the logs need to be written to a file.
     * - Remark: Temp: "\(NSTemporaryDirectory())/log.txt"
     * - Remark: Home: "\(NSHomeDirectory())/log.txt"
     */
    case file(_ filePath: String)
    /**
     * Custom logging type.
-    * This case is used when the logs need to be handled by a custom function.
+    * - Description: This case is used when the logs need to be handled by a custom function
     * - Fixme: ⚠️️ Add example
     */
    case custom(_ onLog: OnLog)
@@ -29,12 +30,12 @@ public enum LogType {
 
 /**
  * LogType extension for logging helper.
- * This extension provides a function to log messages based on the LogType.
+ * - Description: This extension provides a function to log messages based on the LogType.
  */
 extension LogType {
    /**
     * Log to type
-    * This function logs the message to the specified log type.
+    * - Description: This function logs the message to the specified log type.
     * - Parameters:
     *   - msg: Message to print
     *   - level: Severity level to filter on etc
@@ -53,12 +54,12 @@ extension LogType {
 }
 /**
  * LogType extension for custom logging.
- * This extension provides a typealias for a closure that can be used for custom logging.
+ * - Description: This extension provides a typealias for a closure that can be used for custom logging.
  */
 extension LogType {
    /**
     * Closure hook typealias for custom output
-    * This typealias defines a closure that can be used for custom logging.
+    * - Description: This typealias defines a closure that can be used for custom logging.
     * - Remark: It could be a good idea to filter calls if device is in the background / standby via: `UIApplication.shared.applicationState == .active`
     * - Fixme: ⚠️️ document each parameter
     */
@@ -66,7 +67,7 @@ extension LogType {
 }
 /**
  * LogType extension for file logging.
- * This extension provides a function to write logs to a file.
+ * - Description: This extension provides a function to write logs to a file.
  */
 extension LogType {
    /**
@@ -75,7 +76,7 @@ extension LogType {
    public static var isNewLogSession: Bool = false
    /**
     * Write text to file
-    * This function writes a string to a file.
+    * - Description: This function writes a string to a file.
     * - Remark: By using temp folder, the file is removed automatically at some point
     * - Remark: Logs might be lost in temp folder if automation needs to kill the app.
     * - Fixme: ⚠️️ Maybe auto-create new file if size exceeds 3MB etc, temp folder do remove content if it gets too big etc I think, so add this later etc

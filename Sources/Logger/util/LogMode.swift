@@ -1,7 +1,7 @@
 import Foundation
 /**
  * `LogMode` is a structure that defines the noise level in the console.
- * It consists of two properties: `tag` and `level`.
+ * - Note: It consists of two properties: `tag` and `level`.
  * `tag` is a filter for the type of logs to be displayed.
  * `level` is a filter for the severity of logs to be displayed.
  * ## Example:
