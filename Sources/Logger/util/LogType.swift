@@ -73,7 +73,7 @@ extension LogType {
    /**
     *  Indicates if a new log session was started.
     */
-   public static var isNewLogSession: Bool = false
+   public static var isNewLogSession = false
    /**
     * Write text to file
     * - Description: This function writes a string to a file.
