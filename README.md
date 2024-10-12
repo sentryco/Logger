@@ -81,7 +81,7 @@ Logger.warn("\(Trace.trace() - error occured", tag: .net) - error occured") // C
 Add the following line to your `Package.swift` file:
 
 ```swift
-.package(url: "https://github.com/sentryco/Logger.git", branch: "main")
+.package(url: "https://github.com/sentryco/Logger", branch: "main")
 ```
 
 Then add `Logger` as a dependency for your targets:
