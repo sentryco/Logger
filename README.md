@@ -41,9 +41,6 @@ Logger.mode = .everything // .nothing, .essential
 Logger.setup(config: .plain, mode: .everything, type: .console)
 ```
 
-> [!NOTE]  
-> Since iOS14+ Target apples own Logger class, write: `os.Logger`
-
 ### Add custom log end-point like GA or Firebase crashalytics
 ```swift
 let onLog: LogType.OnLog = { msg, level, _ in
@@ -55,6 +52,21 @@ Logger.type = .custom(onLog) // Add the custom output closure to the logger
 Logger.warn("Uh-Oh something went wrong") // Prints
 Logger.error("Unsupported format, bail") // Prints
 Logger.debug("Entered backround") // Does not print
+```
+
+> [!NOTE]  
+> Since iOS14+ Target apples own Logger class, write: `os.Logger`
+
+### Logging to Console.app
+```swift
+import os // Need to import os.Logger
+
+let logger = os.Logger(subsystem: "co.acme.ExampleApp", category: "ExampleApp")
+let onLog: LogType.OnLog = { msg, level, _ in
+   logger.log("\(msg)")
+}
+Logger.type = .custom(onLog) // Add the custom output closure to the logger
+Logger.info("Something happened") // Prints to Console.app (filter by category or subsystem)
 ```
 
 ### Tracing
