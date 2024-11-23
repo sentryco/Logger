@@ -58,12 +58,14 @@ Logger.debug("Entered backround") // Does not print
 > Since iOS14+ Target apples own Logger class, write: `os.Logger`
 
 ### Logging to Console.app
+If mesages in console.app only shows messages as private. Read the logger article on eon.codes on how to change that.
+
 ```swift
 import os // Need to import os.Logger
 
 let logger = os.Logger(subsystem: "co.acme.ExampleApp", category: "ExampleApp")
 let onLog: LogType.OnLog = { msg, level, _ in
-   logger.log("\(msg)")
+   logger.log("\(msg, privacy: .public)") // Reveals the redacted text from the message
 }
 Logger.type = .custom(onLog) // Add the custom output closure to the logger
 Logger.info("Something happened") // Prints to Console.app (filter by category or subsystem)
