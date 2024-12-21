@@ -17,7 +17,12 @@ final class LoggerTests: XCTestCase {
    }
 }
 /**
- * - Fixme: ⚠️️ add doc
+ * Test cases for the Logger functionality
+ * - Description: This test suite verifies various logging capabilities including:
+ *   - Console logging with different configurations and modes
+ *   - Custom output logging (e.g. for analytics integration)
+ *   - File-based logging
+ *   - Stack trace functionality
  */
 extension LoggerTests {
    /**
