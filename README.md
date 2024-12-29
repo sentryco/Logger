@@ -120,3 +120,4 @@ Then add `Logger` as a dependency for your targets:
 - Add support for oslog in the framework. We currently support it in the ad-hoc callback. Add this to unit test as well as instructions on Console.app usage and limitations.
 - Consider adding another log type called "important"
 - Add usage gif exploring system console, google-analytics, xcode consol
+- Add problem / solution to readme
