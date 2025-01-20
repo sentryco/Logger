@@ -31,6 +31,9 @@ extension LogConfig {
     * ss: The second of the minute with two digits (00-59).
     */
    public static let defaultDateFormat: String = "yyyy-MM-dd' 'HH:mm:ss"
+   // fixme add doc
+   // Creating a new DateFormatter every time a date is formatted can be expensive. Caching the DateFormatter instance using a lazy property improves performance.
+   private static var cachedDateFormatter: DateFormatter?
    /**
     * DateFormatter is used to format the date in the log.
     * - Descriptino: It uses the dateFormat specified in the LogConfig, sets the timezone to UTC, and sets the locale to "en_US_POSIX".
@@ -40,11 +43,16 @@ extension LogConfig {
     * - Note: In the context of the LogConfig struct, the en_US_POSIX locale is used to ensure that the date and time formatting is consistent regardless of the user's locale settings
     */
    var dateFormatter: DateFormatter {
-      let format: DateFormatter = .init() // Create a new DateFormatter instance
-      format.dateFormat = dateFormat // Set the date format to the specified format
-      format.timeZone = TimeZone(identifier: "UTC") // Set the time zone to UTC
-      format.locale = Locale(identifier: "en_US_POSIX") // Set the locale to US English
-      return format // Return the DateFormatter instance
+      if let formatter = Self.cachedDateFormatter {
+         return formatter
+      } else {
+         let format = DateFormatter()
+         format.dateFormat = dateFormat
+         format.timeZone = TimeZone(identifier: "UTC")
+         format.locale = Locale(identifier: "en_US_POSIX")
+         Self.cachedDateFormatter = format
+         return format
+      }
    }
 }
 // Extension of LogConfig for predefined configurations.

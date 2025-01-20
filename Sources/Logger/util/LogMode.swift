@@ -50,6 +50,7 @@ extension LogMode {
  * It is used to specify the types of logs to be displayed.
  * ## Examples:
  * LogTag.allCases.filter { $0 != .net && $0 != .db && $0 != .security }
+ * fixme: use set
  */
 public typealias TagFilter = [LogTag] // [.db, .net, .file, .ui, .security, .other]
 /**
@@ -57,5 +58,6 @@ public typealias TagFilter = [LogTag] // [.db, .net, .file, .ui, .security, .oth
  * It is used to specify the severity of logs to be displayed.
  * ## Examples:
  * LogLevel.allCases.filter({ $0 != .info })
+ * fixme: use set
  */
 public typealias LevelFilter = [LogLevel] // [.error, .warning, .info, .critical]

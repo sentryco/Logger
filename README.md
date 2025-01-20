@@ -121,3 +121,22 @@ Then add `Logger` as a dependency for your targets:
 - Consider adding another log type called "important"
 - Add usage gif exploring system console, google-analytics, xcode consol
 - Add problem / solution to readme
+- Add a note about apples OS.Logger. And its limitations.
+- Add protocol oriented design: 
+
+```swift
+protocol LoggerProtocol {
+    func log(message: String, level: LogLevel, tag: LogTag)
+}
+
+// Implementations
+class ConsoleLogger: LoggerProtocol {
+    func log(message: String, level: LogLevel, tag: LogTag) {
+        Swift.print(message)
+    }
+}
+
+class FileLogger: LoggerProtocol {
+    // File logging implementation...
+}
+```

@@ -49,6 +49,7 @@ extension String {
    }
    /**
     * removePrefix function removes the specified prefix from the string.
+    * fixme: rename trimmingPrefix
     */
    fileprivate func removePrefix(prefix: String) -> String {
       guard self.hasPrefix(prefix) else { return self } // Check if the trace message has the specified prefix
@@ -56,6 +57,7 @@ extension String {
    }
    /**
     * removeSuffix function removes the specified suffix from the string.
+    * fixme: rename trimmingSuffix
     */
    fileprivate func removeSuffix(suffix: String) -> String {
       guard self.hasSuffix(suffix) else { return self } // Check if the trace message has the specified suffix

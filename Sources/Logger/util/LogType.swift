@@ -85,15 +85,44 @@ extension LogType {
     *   - filePath: Destination file path, usually temp folder path etc
     */
    public static func writeToFile(string: String, filePath: String) {
-      var content: String = ""
-      if !FileAsserter.exists(path: filePath) { // Assert if filePath doesn't exist
-         FileModifier.write(filePath, content: "New file created" + "\n") // Create new file if non exists
+    let queue = DispatchQueue(label: "com.logger.fileWriteQueue", attributes: .concurrent)
+      queue.async(flags: .barrier) {
+         do {
+               if !FileManager.default.fileExists(atPath: filePath) {
+                  try "New file created\n".write(toFile: filePath, atomically: true, encoding: .utf8)
+               }
+               if isNewLogSession == false {
+                  try "New session started\n".appendLineToURL(fileURL: URL(fileURLWithPath: filePath))
+                  isNewLogSession = true
+               }
+               try (string + "\n").appendLineToURL(fileURL: URL(fileURLWithPath: filePath))
+         } catch {
+               print("Failed to write to log file: \(error.localizedDescription)")
+         }
       }
-      if isNewLogSession == false { // Indicates new app session
-         content += "New session started" + "\n"
-         isNewLogSession = true // only trigger once per app session
-      }
-      content += string + "\n" // Add string
-      FileModifier.append(filePath, text: content) // Append content to end of file
    }
+}
+
+// Helper extension
+extension String {
+    func appendLineToURL(fileURL: URL) throws {
+        try self.appendToURL(fileURL: fileURL)
+    }
+
+    func appendToURL(fileURL: URL) throws {
+        let data = self.data(using: .utf8)!
+        try data.append(fileURL: fileURL)
+    }
+}
+
+extension Data {
+    func append(fileURL: URL) throws {
+        if let fileHandle = try? FileHandle(forWritingTo: fileURL) {
+            defer { fileHandle.closeFile() }
+            fileHandle.seekToEndOfFile()
+            fileHandle.write(self)
+        } else {
+            try write(to: fileURL, options: .atomic)
+        }
+    }
 }

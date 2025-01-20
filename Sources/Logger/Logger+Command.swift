@@ -62,7 +62,9 @@ extension Logger {
     *   - tag: Type of logging, e.g., payment, network, database, etc.
     */
    fileprivate static func log(_ msg: String, level: LogLevel, tag: LogTag) {
+      // fixme after using set, do guard mode.level.contains(level) else { return }
       guard mode.level.contains(where: { $0 == level }) else { return } // Filter level
+      // fixme after using set, do guard mode.level.contains(level) else { return }
       guard mode.tag.contains(where: { $0 == tag }) else { return } // Filter tag
       let text: String = text(msg, level: level, tag: tag) // Get formatted print output
       type.log(msg: text, level: level, tag: tag) // Log to console or file
