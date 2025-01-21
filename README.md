@@ -10,48 +10,58 @@
 > Simple console logger
 
 ### Features
-- 4 levels of severity (🔴 error, 🟠 warning, 🔵️ debug, 🟣 info)
-- 9 tag types (📡 network, 🗄 database, 🖥 UI, 💾 file, 🔑 security, 🛍 payment, ⚙️ system, 🧰 util, 📝 other)
-- Output to **consol**, **file**, or a **custom** end-point like Google analytics or Firebase crashalytics etc (Use Telemetry for GA)
+- Four levels of severity: 🔴 Error, 🟠 Warning, 🔵 Debug, 🟣 Info
+- Nine tag types: 📡 Network, 🗄 Database, 🖥 UI, 💾 File, 🔑 Security, 🛍 Payment, ⚙️ System, 🧰 Utility, 📝 Other
+- Output to **console**, **file**, or a **custom endpoint** like Google Analytics or Firebase Crashlytics
 
 ### Why Logger?
-- Debugging complex apps efficiently requires filtering to prevent console clutter.
-- Fixing network bugs becomes easier when UI and DB logging can be turned off.
-- Sending errors to endpoints like Google Analytics or Firebase Crashlytics is beneficial.
+- Efficiently debug complex apps by filtering logs to avoid console clutter.
+- Easily toggle logging for specific components like UI or database interactions.
+- Send errors and warnings to external services like Google Analytics or Firebase Crashlytics for better monitoring.
 
 ### Logging format:
 ```swift
-Logger.debug(text: "Network.connect - connection established successfully", type: .net)
-// Output: [🔵️ Debug] [23-12-24 22:00:45] ➞ 📡 Network.connect: connection established successfully
-Logger.warning(text: "Network.connect \(error.localDescription)", type: .net)
-// Output: [️🟠 Warning] [23-12-24 22:00:45] ➞ 📡 Network.connect: Wifi not turned on
-Logger.error(text: "Network.process-data \(error.localDescription)", type: .net)
-// Output: [🔴 Error] [23-12-24 22:00:45] ➞ 📡 Network.process-data: Decoding was unsuccessful. Nothing was saved
+Logger.debug("Network.connect - connection established successfully", tag: .net)
+// Output: [🔵 Debug] [2023-12-24 22:00:45] ➞ 📡 Network.connect: connection established successfully
+
+Logger.warning("Network.connect \(error.localizedDescription)", tag: .net)
+// Output: [🟠 Warning] [2023-12-24 22:00:45] ➞ 📡 Network.connect: Wi-Fi is not turned on
+
+Logger.error("Network.processData \(error.localizedDescription)", tag: .net)
+// Output: [🔴 Error] [2023-12-24 22:00:45] ➞ 📡 Network.processData: Decoding was unsuccessful. Nothing was saved
 ```
 
 ### Configure:
 ```swift
-// Print text format
-Logger.config = .plain // .full
-// Output transport
-Logger.type = .console // .file(filePath), .custom({ level, tag, msg in })
-// Levels and tags
-Logger.mode = .everything // .nothing, .essential
-// Or use this convenient one-liner:
-Logger.setup(config: .plain, mode: .everything, type: .console)
+// Configure the logger output format
+Logger.config = .plain  // Options: .plain (no date), .full (includes date and verbose level)
+
+// Set the output transport method
+Logger.type = .console  // Options: .console, .file(filePath: String), .custom(onLog: LogType.OnLog)
+
+// Define the logging mode for levels and tags
+Logger.mode = .everything  // Options: .everything (all logs), .nothing (disable logging), .essential (warnings and errors only)
+
+// Convenient one-liner setup
+Logger.setup(config: .full, mode: .essential, type: .console)
 ```
 
 ### Add custom log end-point like GA or Firebase crashalytics
 ```swift
-let onLog: LogType.OnLog = { msg, level, _ in
-   if [LogLevel.error, .warning].contains(where: { $0 == level }) {
-      Swift.print(msg) // Only prints warning and error, replace w/ call to GA etc
-   }
+// Define a custom logging function
+let onLog: LogType.OnLog = { msg, level, tag in
+    // Only send warnings and errors to the custom endpoint
+    if [.error, .warning].contains(level) {
+        sendToAnalytics(msg, level: level, tag: tag)
+    }
 }
-Logger.type = .custom(onLog) // Add the custom output closure to the logger
-Logger.warn("Uh-Oh something went wrong") // Prints
-Logger.error("Unsupported format, bail") // Prints
-Logger.debug("Entered backround") // Does not print
+
+// Set the logger to use the custom output
+Logger.type = .custom(onLog)
+
+Logger.warn("User session expired", tag: .security)  // This will be sent to the custom endpoint
+Logger.error("Failed to save data", tag: .db)        // This will be sent to the custom endpoint
+Logger.info("User opened settings", tag: .ui)        // This will not be sent
 ```
 
 > [!NOTE]  
@@ -72,6 +82,9 @@ Logger.info("Something happened") // Prints to Console.app (filter by category o
 ```
 
 ### Tracing
+
+ The `Trace` class can be combined with `Logger` to include function names, class names, and line numbers in your logs.
+
 ```swift
 class Test {
    func myFunction() {
@@ -138,5 +151,272 @@ class ConsoleLogger: LoggerProtocol {
 
 class FileLogger: LoggerProtocol {
     // File logging implementation...
+}
+```
+- Add console color codes: 
+
+```swift
+extension String {
+    enum ConsoleColor: String {
+        case red = "\u{001B}[0;31m"
+        case orange = "\u{001B}[0;33m"
+        case blue = "\u{001B}[0;34m"
+        case purple = "\u{001B}[0;35m"
+        case reset = "\u{001B}[0;0m"
+    }
+
+    func colored(_ color: ConsoleColor) -> String {
+        return "\(color.rawValue)\(self)\(ConsoleColor.reset.rawValue)"
+    }
+}
+
+// Apply Colors in Logging:
+
+extension Logger {
+    fileprivate static func formatMessage(_ msg: String, level: LogLevel, tag: LogTag) -> String {
+        // Existing formatting code...
+        var text = "[\(levelText)]"
+        if config.showDate {
+            let date = config.dateFormatter.string(from: Date())
+            text += " [\(date)]"
+        }
+        text += " ➞ \(tag.rawValue) \(msg)"
+
+        // Apply color based on log level
+        switch level {
+        case .error:
+            text = text.colored(.red)
+        case .warning:
+            text = text.colored(.orange)
+        case .debug:
+            text = text.colored(.blue)
+        case .info:
+            text = text.colored(.purple)
+        }
+
+        return text
+    }
+}
+```
+
+- Add Native OS Logging Support (os.log)
+
+```swift
+import os
+
+public enum LogType {
+    // Existing cases...
+    case osLog(OSLog = .default)
+}
+
+extension LogType {
+    internal func log(msg: String, level: LogLevel, tag: LogTag) {
+        switch self {
+        // Existing cases...
+        case let .osLog(logger):
+            if #available(iOS 14.0, macOS 11.0, *) {
+                logger.log("\(msg, privacy: .public)")
+            } else {
+                os_log("%{public}@", log: logger, type: .default, msg)
+            }
+        }
+    }
+}
+
+// Configure logger to use osLog
+Logger.type = .osLog()
+
+// Log messages
+Logger.info("Application started", tag: .system)
+
+```
+
+- Implement Exception Handling for Fatal Crashes
+
+
+```swift
+// Set Up Exception Handler:
+func setUpExceptionHandler() {
+    NSSetUncaughtExceptionHandler { exception in
+        Logger.error("Uncaught exception: \(exception)", tag: .system)
+    }
+}
+// Set Up Signal Handler:
+import Darwin
+
+func setUpSignalHandler() {
+    signal(SIGABRT) { _ in
+        Logger.error("Received SIGABRT signal", tag: .system)
+    }
+    signal(SIGILL) { _ in
+        Logger.error("Received SIGILL signal", tag: .system)
+    }
+    // Add handlers for other signals as needed
+}
+// Call Handlers at App Launch:
+// In AppDelegate or main entry point
+func applicationDidFinishLaunching(_ application: UIApplication) {
+    setUpExceptionHandler()
+    setUpSignalHandler()
+    // Other initialization code...
+}
+// Extend LogType:
+public enum LogType {
+    // Existing cases...
+    case crashlytics
+}
+// Implement Crashlytics Logging:
+extension LogType {
+    internal func log(msg: String, level: LogLevel, tag: LogTag) {
+        switch self {
+        // Existing cases...
+        case .crashlytics:
+            Crashlytics.crashlytics().log(msg)
+            if level == .error {
+                let error = NSError(domain: Bundle.main.bundleIdentifier ?? "Logger", code: 0, userInfo: [NSLocalizedDescriptionKey: msg])
+                Crashlytics.crashlytics().record(error: error)
+            }
+        }
+    }
+}
+// Usage Example:
+Logger.type = .crashlytics
+Logger.error("Critical failure", tag: .system)
+
+```
+
+**Introduce a New Log Level "Important"**
+
+**Description**: Add a new log level for messages that are more significant than `info` but not quite `warning`.
+
+**Implementation**:
+
+- **Add New Case in `LogLevel`**:
+
+```swift
+public enum LogLevel: String, CaseIterable {
+    // Existing cases...
+    case important = "🟢"
+}
+```
+
+- **Add Title for the New Level**:
+
+```swift
+extension LogLevel {
+    var title: String {
+        switch self {
+        // Existing cases...
+        case .important:
+            return "Important"
+        }
+    }
+}
+```
+- **Add Method in `Logger+Command`**:
+
+```swift
+extension Logger {
+    public static func important(_ msg: String, tag: LogTag = .other) {
+        log(msg, level: .important, tag: tag)
+    }
+}
+```
+
+- **Usage Example**:
+
+```swift
+Logger.important("User achieved a significant milestone", tag: .achievement)
+```
+
+
+**Adopt Protocol-Oriented Design**
+
+**Description**: Refactor the logger to use protocols, allowing for greater flexibility, easier testing, and adherence to SOLID principles.
+
+**Implementation**:
+
+- **Define `LoggerProtocol`**:
+
+```swift
+public protocol LoggerProtocol {
+    func log(_ msg: String, level: LogLevel, tag: LogTag)
+}
+```
+
+- **Create Concrete Implementations**:
+
+```swift
+public class ConsoleLogger: LoggerProtocol {
+    public func log(_ msg: String, level: LogLevel, tag: LogTag) {
+        print(msg)
+    }
+}
+
+public class FileLogger: LoggerProtocol {
+    private let filePath: String
+
+    public init(filePath: String) {
+        self.filePath = filePath
+    }
+
+    public func log(_ msg: String, level: LogLevel, tag: LogTag) {
+        // Implement file writing logic here
+    }
+}
+```
+
+- **Modify `Logger` to Use `LoggerProtocol`**:
+
+```swift
+public final class Logger {
+    public static var logger: LoggerProtocol = ConsoleLogger()
+    // Modify log methods to use `logger.log(...)`
+}
+```
+
+- **Usage Example**:
+```
+Logger.logger = FileLogger(filePath: "/path/to/log.txt")
+Logger.info("This will be logged to a file")
+```
+
+**Add Support for Swift Concurrency (`async`/`await`)**
+
+**Description**: Modernize the logger to be compatible with Swift's async/await concurrency model.
+
+**Implementation**:
+
+```swift
+extension Logger {
+    public static func logAsync(_ msg: String, level: LogLevel, tag: LogTag) async {
+        await withCheckedContinuation { continuation in
+            DispatchQueue.global(qos: .utility).async {
+                log(msg, level: level, tag: tag)
+                continuation.resume()
+            }
+        }
+    }
+}
+Task {
+    await Logger.logAsync("Asynchronous log message", level: .info, tag: .system)
+}
+```
+
+**Description**: Ensure that logging is safe in multi-threaded environments, particularly when writing to shared resources like files.
+
+**Implementation**:
+
+- **Use Serial Dispatch Queues**:
+
+```swift
+extension LogType {
+    private static let fileWriteQueue = DispatchQueue(label: "com.logger.fileWriteQueue")
+
+    static func writeToFile(string: String, filePath: String) {
+        fileWriteQueue.async {
+            // File writing code...
+        }
+    }
 }
 ```
