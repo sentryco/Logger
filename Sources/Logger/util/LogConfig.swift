@@ -31,7 +31,14 @@ extension LogConfig {
     * ss: The second of the minute with two digits (00-59).
     */
    public static let defaultDateFormat: String = "yyyy-MM-dd' 'HH:mm:ss"
-   // fixme add doc
+   /**
+    * A cached instance of `DateFormatter` to enhance performance.
+    *
+    * Creating a new `DateFormatter` instance for every date formatting operation can be resource-intensive.
+    * This cached formatter ensures that a single instance is reused, minimizing overhead and improving efficiency.
+    * The formatter is configured with the specified `dateFormat`, set to the UTC timezone, and uses the `en_US_POSIX` locale
+    * to guarantee consistent date formatting regardless of the user's locale settings.
+    */
    // Creating a new DateFormatter every time a date is formatted can be expensive. Caching the DateFormatter instance using a lazy property improves performance.
    private static var cachedDateFormatter: DateFormatter?
    /**
