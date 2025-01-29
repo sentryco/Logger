@@ -44,22 +44,20 @@ extension String {
     * trim function removes the specified prefix and suffix from the string.
     */
    fileprivate mutating func trim(left: String, right: String) {
-      self = removePrefix(prefix: left) // Remove the left prefix from the trace message
-      self = removeSuffix(suffix: right) // Remove the right suffix from the trace message
+      self = trimmingPrefix(prefix: left) // Remove the left prefix from the trace message
+      self = trimmingSuffix(suffix: right) // Remove the right suffix from the trace message
    }
    /**
     * removePrefix function removes the specified prefix from the string.
-    * fixme: rename trimmingPrefix
     */
-   fileprivate func removePrefix(prefix: String) -> String {
+   fileprivate func trimmingPrefix(prefix: String) -> String {
       guard self.hasPrefix(prefix) else { return self } // Check if the trace message has the specified prefix
       return "\(self.dropFirst(prefix.count))" // Remove the prefix from the trace message and return the result
    }
    /**
     * removeSuffix function removes the specified suffix from the string.
-    * fixme: rename trimmingSuffix
     */
-   fileprivate func removeSuffix(suffix: String) -> String {
+   fileprivate func trimmingSuffix(suffix: String) -> String {
       guard self.hasSuffix(suffix) else { return self } // Check if the trace message has the specified suffix
       return "\(self.dropLast(suffix.count))" // Remove the suffix from the trace message and return the result
    }
