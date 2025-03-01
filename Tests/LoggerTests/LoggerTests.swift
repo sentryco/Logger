@@ -1,6 +1,6 @@
 import XCTest
 import Logger
-import FileSugar
+//import FileSugar
 /**
  * LoggerTests class inherits from XCTestCase
  */
@@ -76,7 +76,10 @@ extension LoggerTests {
       Logger.type = .file(tempFilePath)
       Logger.debug("Test")
       Swift.print("LogType.tempFilePath:  \(tempFilePath)")
-      let fileExists: Bool = FileAsserter.exists(path: tempFilePath)
+      
+      // Check if a file exists at the given path
+         
+      let fileExists: Bool = FileManager().fileExists(atPath: tempFilePath)
       Swift.print("fileExists\(fileExists ? "✅" : "🚫")")
       XCTAssertTrue(fileExists)
    }

@@ -11,12 +11,12 @@ let package = Package(
             targets: ["Logger"]) // Targets that are part of the library
     ],
     dependencies: [
-      .package(url: "https://github.com/eonist/FileSugar.git", branch: "master") // Dependencies of the package
+//      .package(url: "https://github.com/eonist/FileSugar.git", branch: "master") // Dependencies of the package
     ],
     targets: [
         .target(
             name: "Logger", // Name of the target
-            dependencies: ["FileSugar"]), // Dependencies of the target
+            dependencies: [/*"FileSugar"*/]), // Dependencies of the target
         .testTarget(
             name: "LoggerTests", // Name of the test target
             dependencies: ["Logger"]) // Dependencies of the test target
